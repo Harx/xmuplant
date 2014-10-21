@@ -1,0 +1,307 @@
+angular.module("app.controllers",[])
+    .controller("homeCtrl",["$scope","$http",function($scope,$http){
+        $scope.home={
+            species:[
+                {
+                    name_cn:"",
+                    name_en:"",
+                    img_name:""
+                }
+            ],
+            currentImg:"",
+            divisions:[
+                {
+                    id:"1",
+                    title:"被子植物门 Angiospermae",
+                    content:"是植物界最大和最高级的1门。种类繁多，分为双子叶和单子叶植物纲。厦大校园据2011-12年调查有355种，隶属93科245属。",
+                    img:"beizi.jpg"
+                },
+                {
+                    id:"2",
+                    title:"裸子植物门 Gymnospermae",
+                    content:"多为常绿乔木。种子裸露，没有果皮包被。具有根，茎，叶，种子四种器官。厦大校园有12种，隶属6科9属。",
+                    img:"luozi.jpg"
+                },
+                {
+                    id:"3",
+                    title:"蕨类植物门 Pteridophyta",
+                    content:"高等植物中较低级的一类，多为草本。具根、茎、叶，无花、果、种子，靠孢子繁殖。厦大校园有7种，5科5属。",
+                    img:"juelei.jpg"
+                }
+            ],
+            sections:[
+                {
+                    title:"植物专题",
+                    img:"zhiwuzhuanti.png",
+                    href:"#/topic"
+                },
+                {
+                    title:"系统分类",
+                    img:"tezhengshaixuan.png",
+                    href:"#/category"
+                },
+                {
+                    title:"植物地图",
+                    img:"zhiwuditu.png",
+                    href:"#/map"
+                },
+                {
+                    title:"扩展知识",
+                    img:"kuozhanzhishi.png",
+                    href:"#/knowledge"
+                }
+            ]
+        };
+        $http.get("db/latestSpecies.php").
+            success(function(data){
+                $scope.home.species=data;
+                $scope.home.currentImg=$scope.home.species[0].name_cn;
+            }).
+            error(function(data,status){
+
+            });
+    }])
+    .controller("footerCtrl",["$scope","$http",function($scope,$http){
+        $scope.statics={};
+        $http({
+            method:"get",
+            url:"db/statics.php",
+            params:""
+        }).success(function(data){
+                $scope.statics=data;
+            });
+    }])
+    .controller("mapCtrl",["$scope","$http",function($scope,$http){
+        $scope.species={
+            id:"",
+            name_cn:"",
+            name_en:"",
+            name_ot:"",
+            division:"",
+            family:"",
+            genus:"",
+            distribution:"",
+
+            longitude:"",
+            latitude:""
+        };
+        $http.get("db/map.php").
+            success(function(data){
+                $scope.mapp=data;
+                var species=data;
+
+                var map=new BMap.Map("map");
+                map.addControl(new BMap.MapTypeControl());//添加地形控制器
+                map.enableScrollWheelZoom();//设置鼠标滚轮缩放为启用
+                map.centerAndZoom(new BMap.Point(118.105219, 24.443082), 17);
+
+                for(var i=0;i<species.length;i++){
+                    var longitudeArr=species[i].longitude.split(',');
+                    var latitudeArr=species[i].latitude.split(',');
+                    var name_cn=species[i].name_cn;
+                    var name_en=species[i].name_en;
+                    var id=species[i].id;
+
+                    for(var j=0;j<longitudeArr.length;j++){
+                        var marker=new BMap.Marker(new BMap.Point(longitudeArr[j],latitudeArr[j]));
+                        map.addOverlay(marker);
+
+                        // 参考: http://blog.csdn.net/sup_heaven/article/details/8461569
+                        var mInfo = '<p>' + name_cn+ ' ' + name_en + '</p>'
+                        marker.addEventListener("click", function(){
+                            this.openInfoWindow(new BMap.InfoWindow(mInfo));
+                            $scope.openInfo(id);
+                        });
+                    }
+                }
+            }).
+            error(function(data){
+
+            });
+
+        $scope.openInfo=function(id){
+            $http.get("db/r.php?items=id,name_cn,name_en,name_ot,division,family,genus,distribution&tables=").
+                success(function(data){
+                    $scope.species=data[0];
+
+                    var params = "?division=" + data[0].division + "&family=" + data[0].family + "&genus=" + data[0].genus;
+                    $http.get("db/species_class.php"+params).
+                        success(function(data){
+                            $scope.species.division=data['division'];
+                            $scope.species.family=data['family'];
+                            $scope.species.genus=data['genus'];
+                        }).
+                        error(function(data){
+
+                        });
+
+                })
+        }
+    }])
+    .controller("categoryCtrl",["$scope",'$routeParams',function($scope,$routeParams){
+        $scope.category={
+
+        }
+    }])
+    .controller("topicListCtrl",["$scope","$http","$routeParams",function($scope,$http,$routeParams){
+        $scope.topic={
+            topics:[
+                {
+                    id:"",
+                    title:"",
+                    d:""
+                }
+            ],
+            pages:[]
+        };
+        $http.get("db/pagination.php?table=subject&items=id,title,d&page="+$routeParams.page)
+            .success(function(data){
+                $scope.topic.topics=data[1];
+                $scope.topic.pages=data[0];
+            })
+            .error(function(data){
+                $scope.topic.pages=data;
+            });
+
+
+    }])
+    .controller("topicDetailsCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){
+        $scope.topicDetails={
+            title:"",
+            d:"",
+            s:[
+                {
+                    id:"",
+                    name_cn:"",
+                    name_en:""
+                }
+            ]
+        };
+        $http.get("db/topicDetails.php?id="+$routeParams.id)
+            .success(function(data){
+                $scope.topicDetails=data;
+            });
+    }])
+    .controller("knowledgeListCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){
+        $scope.klgList={
+            articles:[
+                {
+                    id:"",
+                    title:"",
+                    category:""
+                }
+            ],
+            category:[
+                {
+                    name:"",
+                    count:""
+                }
+            ],
+            pages:[]
+        };
+
+        $http.get("db/pagination.php?table=knowledge&items=id,title,category &page="+$routeParams.page).
+            success(function(data){
+                $scope.klgList.pages=data[0];
+                $scope.klgList.articles = data[1];
+           });
+        $http.get("db/r.php?tables=klg_category&items=name,count").
+            success(function(data){
+                $scope.klgList.category=data;
+            });
+    }])
+    .controller("knowledgeDetailsCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){
+        $scope.klgDetails={
+            title:"",
+            content:"",
+            date:"",
+            category:""
+        };
+        $http.get("db/r.php?tables=knowledge&items=title,content,date,category&id="+$routeParams.id).
+            success(function(data){
+               $scope.klgDetails=data[0];
+            });
+    }])
+    .controller("aboutCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){
+        $scope.about={};
+        if($routeParams.id==5){
+            $scope.about.id=5;
+            $http.get("db/r.php?tables=sblog&items=*").
+                success(function(data){
+                    $scope.sblog=data.reverse();
+                })
+        }else{
+            $http({url:"db/r.php",method:"get",params:{tables:"intro",items:"id,title,content",id:$routeParams.id}}).
+                success(function(data){
+                    $scope.about=data[0];
+                })
+        }
+    }])
+    .controller("searchCtrl",["$scope",function($scope){
+        $scope.search={
+            sort:"name_cn",
+            keyword:"三角梅",
+            sort1:"name_cn",
+            keyword1:""
+        };
+
+    }])
+    .controller("messagesCtrl",["$scope",function($scope){
+
+    }])
+    .controller("speciesDetailsCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){
+        $scope.species={
+            name_cn:"",
+            name_en:"",
+            name_ot:"",
+            division:"",
+            family:"",
+            genus:"",
+            distribution:"",
+
+            longitude:"",
+            latitude:"",
+
+            morphology:"",
+            origin:"",
+            habitus:"",
+            cultivation:"",
+            application:"",
+            history:""
+
+        };
+        $http.get("db/r.php?tables= &items=* &id="+$routeParams.id)
+            .success(function(data){
+                var s=$scope.species=data[0];
+
+                var imgNames=$scope.species.img_name.split(",");
+                $scope.species.imgSrc=[];
+
+                var argument="?division="+ s.division+"&family="+ s.family+"&genus="+ s.genus;
+                $http.get("db/species_class.php"+argument).
+                    success(function(data){
+                        $scope.species.division=data['division'];
+                        $scope.species.family=data['family'];
+                        $scope.species.genus=data['genus'];
+                    }).
+                    error(function(data){
+
+                    });
+
+
+                var map=new BMap.Map("map");
+                map.addControl(new BMap.MapTypeControl());//添加地形控制器
+                map.enableScrollWheelZoom();//设置鼠标滚轮缩放为启用
+                map.centerAndZoom(new BMap.Point(118.105219, 24.443082), 17);
+
+                var longitudeArr=$scope.species.longitude.split(',');
+                var latitudeArr=$scope.species.latitude.split(',');
+                for(var i=0;i<longitudeArr.length;i++){
+                    map.addOverlay(new BMap.Marker(new BMap.Point(longitudeArr[i],latitudeArr[i])));
+                }
+            })
+            .error(function(data){
+
+            });
+
+    }]);

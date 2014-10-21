@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-7 col-xs-12">
+        <!-- slider pic-->
+        <div id="carousel-xmu" class="carousel slide" data-ride="carousel">
+            <!--indicators-->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-xmu" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-xmu" data-slide-to="1"></li>
+                <li data-target="#carousel-xmu" data-slide-to="2"></li>
+                <li data-target="#carousel-xmu" data-slide-to="4"></li>
+            </ol>
+
+            <!--Wrapper for slides-->
+            <div class="carousel-inner" role="listbox">
+                <div class="item" ng-class="{active:home.currentImg==plant.name_cn}" ng-repeat="plant in home.species">
+                    <img ng-src="upload/default.jpg" alt="alt"/>
+
+                    <div class="carousel-caption">
+                        {{plant.name_cn +' '+plant.name_en}}
+                    </div>
+                </div>
+            </div>
+
+            <!--Controls-->
+            <a class="carousel-control left" href="#carousel-xmu" data-slide="prev" role="button">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control right" href="#carousel-xmu" data-slide="next" role="button">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="col-md-5 col-xs-12">
+        <!-- three plant division entrance-->
+
+        <div class="row thumbnail" ng-repeat="plant in home.divisions">
+            <a href="#/category/{{plant.id}}" class="caption">
+                <img class="col-md-5 col-xs-5" ng-src="upload/{{plant.img}}"/>
+
+                <div class="col-md-7 col-xs-7">
+                    <h4>{{plant.title}}</h4>
+                    <h6>{{plant.content}}</h6>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!--quote-->
+    <h3 class="col-md-12 alert alert-success">I believe a leaf of grass is no less than the journey work of the stars.
+        ——Walt Whitman</h3>
+</div>
+
+<div class="row">
+    <!-- four section entrance-->
+    <a href="{{plant.href}}" class="thumbnail col-md-3 col-xs-12" ng-repeat="plant in home.sections">
+        <img ng-src="upload/{{plant.img}}"/>
+        <h4>{{plant.title}}</h4>
+    </a>
+</div>
+
+<img src="upload/shangxian.jpg" alt="ShangXianBackground"/>

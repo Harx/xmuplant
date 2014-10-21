@@ -1,0 +1,13 @@
+<h1>植物物种检索</h1>
+<div>
+    <select ng-model="search.sort1">
+        <option value="name_cn" selected="selected">中文名</option>
+        <option value="name_ot">别名</option>
+        <option value="name_en">拉丁名</option>
+    </select>
+    <input type="text" ng-model="search.keyword1" placeholder="输入物种名字...">
+    <button>检索</button>
+</div>
+<div>
+    {{search}}
+</div>
