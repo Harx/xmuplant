@@ -1,33 +1,101 @@
 /* app css stylesheet */
 
+/* 全局 */
 body{
-	background-color:#C0DEED;
-	background-image: url("../upload/shangxian.jpg");
-	background-position: bottom;
-	background-repeat: no-repeat;
-}
-.navbar-reverse{
-	background-color: white;
-}
-.navbar-brand img{
-	float: left;
-	position: relative;
-	top: -15px;
-}
-.carousel{
-	height:500px;
-	margin: 65px auto 15px auto;
-}
-.carousel-inner .item img{
-	height: 500px;
-	margin: 0 auto;
+/*	background-color:#C0DEED;*/    
 }
 .card{
 	background-color: white;
 	border: 1px solid #e1e8ed;
-	margin: 5px;
-	padding: 15px;
+    padding: 10px;
+    border-radius: 6px;
 }
-#maincontent{
-	margin-top: 60px;
+
+/* 导航条 */
+#header{
+    font-family: "黑体";
+/*设置高度会导致折叠的菜单背景色变透明*/
+/*    height: 50px;*/
+    background-color: white;
+    border-bottom: 1px solid #ebebeb;
+    box-shadow:0 0 3px 0px #888;
 }
+.navbar-brand{
+    padding:0px;
+}
+.navbar-brand a {
+    color: #0084B4;
+    display: block;
+    height: 50px;
+    padding: 0px 15px;
+}
+.navbar-brand a span{
+    vertical-align: middle;
+}
+.navbar-brand a:hover{
+    text-decoration: none;
+    border-bottom: 4px #0084B4  solid;
+}
+#header .nav a{    
+    font-size: 18px;
+    color: #66757F;
+}
+#header .nav a:hover{
+    color: #0084B4;
+    height: 50px;
+    border-bottom: 4px #0084B4  solid;
+}
+
+/* 内容外层修饰 */
+.wrapper {
+    padding-top: 50px;
+}
+
+/* 主页 */
+#home {
+/*    margin-top: 40px;*/
+    color: steelblue;
+}
+
+#home >div a {
+    display: block;    
+}
+#home >div a:hover{
+    text-decoration: none;
+}
+#home .division{
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 160px;
+    padding-top: 5px;//若不设置此项上一层的<a>内上部便会莫名增加空间
+    padding-right: 5px;
+    padding-bottom: 5px;    
+}
+#home .division h4{
+    margin-bottom: 20px;
+}
+
+#home .quote{
+    font-family: "Times New Roman",Times,serif;
+    font-size: 24px;
+    font-style: italic;
+    color: steelblue;
+    text-align: center;
+    margin: 20px 0px;
+}
+#home .section *{
+    display: block;
+    margin: 0px auto;
+}
+#home .section h4{
+    text-align: center;
+    padding: 10px;
+}
+
+#footer {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+
