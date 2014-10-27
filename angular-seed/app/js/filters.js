@@ -1,11 +1,6 @@
-angular.module('app.controller',[])
-	.controller('home',function($scope){
-
-	})
-	.controller('map',function($scope){
-
-	})
-	.controller('category',function($scope)){
-
-	}
-;
+angular.module('app.filters',[])
+	.filter("htmlTrust",["$sce",function($sce){
+        return function(stringHtml){
+            return $sce.trustAsHtml(stringHtml);
+        };
+    }]);

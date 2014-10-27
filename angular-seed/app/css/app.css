@@ -16,6 +16,12 @@ body{
     padding: 10px;
     border-radius: 6px;
 }
+/*      html转义样式*/
+.asHtml {
+    line-height: 200%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
 
 /* 导航条 */
 #header{
@@ -65,26 +71,6 @@ body{
 /*    margin-top: 40px;*/
     color: steelblue;
 }
-
-#home >div a {
-    display: block;    
-}
-#home >div a:hover{
-    text-decoration: none;
-}
-#home .division{
-    height: 150px;
-    background-repeat: no-repeat;
-    background-position: left;
-    padding-left: 160px;
-    padding-top: 5px;//若不设置此项上一层的<a>内上部便会莫名增加空间
-    padding-right: 5px;
-    padding-bottom: 5px;    
-}
-#home .division h4{
-    margin-bottom: 20px;
-}
-
 #home .quote{
     font-family: "Times New Roman",Times,serif;
     font-size: 24px;
@@ -93,18 +79,13 @@ body{
     text-align: center;
     margin: 20px 0px;
 }
-#home .section *{
-    display: block;
-    margin: 0px auto;
-}
-#home .section h4{
-    text-align: center;
-    padding: 10px;
-}
 
-#footer {
-    margin-top: 20px;
-    padding: 10px;
+/* 关于我们 */
+#about {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
-
-
+/*     内容缩进 */
+#about .card div>div {
+    padding: 0px 30px;
+}

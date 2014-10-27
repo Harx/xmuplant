@@ -1,32 +1,31 @@
-<div class="row">
-    <div class="col-xs-12 col-md-2 well">
-        <ul class="nav nav-pills nav-stacked">
-            <li ng-class="{active:about.id==1}"><a href="#/about/1">关于</a></li>
-            <li ng-class="{active:about.id==2}"><a href="#/about/2">联系</a></li>
-            <li ng-class="{active:about.id==3}"><a href="#/about/3">版权声明</a></li>
-            <li ng-class="{active:about.id==4}"><a href="#/about/4">我要传图</a></li>
-            <li ng-class="{active:about.id==5}"><a href="#/about/5">更新日志</a></li>
-        </ul>
+<div id="about" class="row">
+    <div class="col-xs-12 col-md-2">
+        <div class="list-group">
+            <a class="list-group-item text-center" ng-class="{active:about.id==1}" href="#/about/1">网站介绍</a>
+
+            <a class="list-group-item text-center" ng-class="{active:about.id==2}" href="#/about/2">联系方式</a>
+
+            <a class="list-group-item text-center" ng-class="{active:about.id==3}" href="#/about/3">版权声明</a>
+
+            <a class="list-group-item text-center" ng-class="{active:about.id==4}" href="#/about/4">我要传图</a>
+
+            <a class="list-group-item text-center" ng-class="{active:about.id==5}" href="#/about/5">更新日志</a>
+        </div>
     </div>
     <div class="col-xs-12 col-md-10">
+        <div class="card">
+            <div ng-if="about.id==1||about.id==2||about.id==3||about.id==4">
+                <h4>{{about.title}}</h4>
+                <hr>
+                <div class="asHtml" ng-bind-html="about.content | htmlTrust"></div>
+            </div>
 
-        <div ng-if="about.id==1||about.id==2||about.id==3||about.id==4">
-            <h1>{{about.title}}</h1>
-            <hr>
-            <div>
-                <pre>{{about.content}}</pre>
+            <div ng-if="about.id==5" ng-repeat="log in sblog">
+                <hr ng-if="$index!=0">
+                <h4>{{log.title}}</h4> 
+                <div class="asHtml" ng-bind-html="log.content | htmlTrust"></div>
             </div>
         </div>
 
-        <div ng-if="about.id==5">
-            <div class="panel panel-default" ng-repeat="log in sblog">
-                <div class="panel-heading">
-                    {{log.title}}
-                </div>
-                <div class="panel-body">
-                    <pre>{{log.content}}</pre>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
