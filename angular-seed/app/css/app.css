@@ -4,6 +4,12 @@
 body{
 /*	background-color:#C0DEED;*/    
 }
+
+/*     内容外层修饰 */
+.wrapper {
+    padding-top: 50px;
+}
+/*    卡片风格*/
 .card{
 	background-color: white;
 	border: 1px solid #e1e8ed;
@@ -20,6 +26,7 @@ body{
     border-bottom: 1px solid #ebebeb;
     box-shadow:0 0 3px 0px #888;
 }
+    /*网站标志*/
 .navbar-brand{
     padding:0px;
 }
@@ -36,6 +43,7 @@ body{
     text-decoration: none;
     border-bottom: 4px #0084B4  solid;
 }
+    /*导航项目*/
 #header .nav a{    
     font-size: 18px;
     color: #66757F;
@@ -46,10 +54,7 @@ body{
     border-bottom: 4px #0084B4  solid;
 }
 
-/* 内容外层修饰 */
-.wrapper {
-    padding-top: 50px;
-}
+
 
 /* 主页 */
 #home {
