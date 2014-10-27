@@ -71,6 +71,12 @@ angular.module("app.controllers",[])
                 $scope.statics=data;
             });
     }])
+    .controller("navigationCtrl",["$scope","$location",function($scope,$location){
+        $scope.isActive=function(route){
+            return $location.path().indexOf(route)==0?true:false;
+        }
+        
+    }])
     .controller("mapCtrl",["$scope","$http",function($scope,$http){
         $scope.species={
             id:"",

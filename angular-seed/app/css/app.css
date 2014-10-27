@@ -53,8 +53,12 @@ body{
     height: 50px;
     border-bottom: 4px #0084B4  solid;
 }
-
-
+#header .active>a{
+    background-color: white;
+    color: #0084B4;
+    height: 50px;
+    border-bottom: 4px #0084B4  solid;
+}
 
 /* 主页 */
 #home {
