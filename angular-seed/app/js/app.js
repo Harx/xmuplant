@@ -31,7 +31,7 @@ app.config(['$routeProvider', '$locationProvider',
             templateUrl: "partials/topicDetails.html",
             controller: 'topicDetailsCtrl'
         })
-            .when('/knowledge/list/:page', {
+            .when('/knowledge/list/:catid/:page', {
                 templateUrl: 'partials/knowledgeList.html',
                 controller: "knowledgeListCtrl"
             })

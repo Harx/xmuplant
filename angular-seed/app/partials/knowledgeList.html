@@ -1,33 +1,41 @@
 <!--{{klgList}}-->
-<h1>扩展知识</h1>
-<hr>
-<div class="row">
-
-    <div class="list-group col-xs-12 col-md-2">
-        <a class="list-group-item disabled"><strong>栏目分类</strong></a>
-        <a class="list-group-item" ng-repeat="item in klgList.category">
-            <span class="badge">{{item.count}}</span>
-            {{item.name}}
-        </a>
+<div id="knowledgeList" class="row">
+    <div id="klgList_nav" class="left-nav col-md-2 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>类别</strong>
+            </div>
+            <div class="list-group">
+                <a ng-class={active:isActive(0)} class="list-group-item" href="#/knowledge/list/0/1">
+                    <span class="badge">{{klgList.total}}</span>全部</a>
+                <a ng-class={active:isActive(item.id)} class="list-group-item" href="#/knowledge/list/{{item.id}}/1" ng-repeat="item in klgList.category">
+                    <span class="badge">{{item.count}}</span>{{item.name}}</a>
+            </div>
+        </div>
     </div>
 
-    <div class="col-xs-12 col-md-10">
-        <table class="table">
-            <tr ng-repeat="item in klgList.articles">
-                <td>{{$index+1}}</td>
-                <td>
-                    <span>【{{item.category}}】</span>
+    <div id="klgList_content" class="col-xs-12 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>编号  /  分类  /  标题</strong>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="item in klgList.articles">
+                    <span>{{item.id}}</span>
+                    <small>【{{item.category}}】</small>
                     <a href="#/knowledge/details/{{item.id}}">{{item.title}}</a>
-                </td>
-            </tr>
-        </table>
+                </li>
+            </ul>
+        </div>
 
         <ul class="pagination">
-            <li class="disabled active"><a href="#">&laquo;</a></li>
-            <li ng-repeat="page in klgList.pages">
-                <a href="#/knowledge/list/{{page}}">{{page}}</a>
+            <li class="disabled active"><a href="#">&laquo;</a>
             </li>
-            <li class="disabled"><a href="#">&raquo;</a></li>
+            <li ng-repeat="page in klgList.pages">
+                <a href="#/knowledge/list/{{klgList.curCat}}/{{page}}">{{page}}</a>
+            </li>
+            <li class="disabled"><a href="#">&raquo;</a>
+            </li>
         </ul>
     </div>
 

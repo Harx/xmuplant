@@ -81,44 +81,56 @@ body{
     margin: 20px 0px;
 }
 
-/* 关于我们 */
+
 #about,#knowledgeList,#knowledgeDetails {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-/*     内容缩进 */
-#about .card div>div {
-    padding: 0px 30px;
-}
-.pagination {
+
+/* 关于我们 */
+#about .pagination {
 /*    position: fixed;*/
 /*    bottom: 10px;*/
 }
-#about .panel.panel-default{
+#about-content .panel-heading{
+    background-color: white;
+}
+#about-content .panel-body:before{
+    content: none;
+}
+
+/* panel ..subnav   */
+.panel.panel-default{
     border: none;
 }
-#about-nav .list-group-item {
+.left-nav .panel-heading {
+    border: none;
+    background-color: white;
+    padding: 10px;
+    font-size: 16px;    
+}
+.left-nav .list-group-item {
     padding: 6px 15px;
     border: none;
     border-left: 3px solid white !important;
     font-size: 12px;
     font-weight:600;
 }
-#about-nav div.list-group a.active,#about div.list-group a:hover{
+.left-nav a.list-group-item.active,.left-nav a.list-group-item:hover{
     background-color: white;
     color: #0084B4;
     border-left: 3px solid #0084B4 !important;
 }
-#about-nav .panel-heading {
-    border: none;
-    background-color: white;
-    padding: 10px;
-    font-size: 16px;
+.left-nav a.list-group-item.active>.badge,.left-nav a.list-group-item:hover>.badge{
+    color: white;
+    background-color:  #0084B4;
 }
 
-#about-content .panel-heading {
+/*  knowledge list*/
+#klgList_content .panel-heading{
     background-color: white;
 }
-#about-content .panel-body:before{
-    content: none;
+#klgList_content li.list-group-item>span{
+    display: inline-block;
+    width: 20px;
 }

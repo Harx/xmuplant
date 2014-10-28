@@ -1,13 +1,18 @@
 <!--{{klgDetails}}-->
-<div class="row">
-    <div class="col-xs-12 col-md-10">
-        <h2>
-            {{klgDetails.title}}
-            <span>{{klgDetails.category + klgDetails.date}}</span>
-        </h2>
-        <hr>
-        <div>
-            <pre>{{klgDetails.content}}</pre>
+<div id="knowledgeDetails" class="row">
+    <div class="col-md-1">
+        <div class="">
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <div class="card">
+            <h2>
+                {{klgDetails.title}}
+                <small>/ {{klgDetails.category}} / {{klgDetails.date}}</small>
+                <button onclick="window.history.back()  " class="btn btn-info pull-right">返回目录</button>
+            </h2>
+            <hr>
+            <div ng-bind-html="klgDetails.content | htmlTrust"></div>
         </div>
     </div>
     <div class="col-xs-12 col-md-2">

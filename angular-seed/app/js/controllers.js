@@ -190,6 +190,14 @@ angular.module("app.controllers",[])
     }])
     .controller("knowledgeListCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){
         $scope.klgList={
+            total:"",
+            category:[
+                {
+                    id:"",
+                    name:"",
+                    count:""
+                }
+            ],            
             articles:[
                 {
                     id:"",
@@ -197,23 +205,59 @@ angular.module("app.controllers",[])
                     category:""
                 }
             ],
-            category:[
-                {
-                    name:"",
-                    count:""
-                }
-            ],
+            curCat:"",
             pages:[]
         };
-
-        $http.get("db/pagination.php?table=knowledge&items=id,title,category &page="+$routeParams.page).
-            success(function(data){
-                $scope.klgList.pages=data[0];
-                $scope.klgList.articles = data[1];
-           });
-        $http.get("db/r.php?tables=klg_category&items=name,count").
+        $scope.klgList.curCat=$routeParams.catid;
+        $scope.isActive=function(catId){
+            return catId==$routeParams.catid;
+        }
+        $http.get("db/r.php?tables=klg_category&items=id,name").
             success(function(data){
                 $scope.klgList.category=data;
+                var i=0;l=data.length;
+                for(i;i<l;i++){
+                    $scope.klgList.category[i].count=0;
+                }
+            
+                //用运算来代替增加数据库count项以及一系列逻辑代码                    
+                $http.get("db/pagination.php?table=knowledge&items=category&page="+$routeParams.page).
+                    success(function(data){
+                        $scope.klgList.total=data[1].length;
+                        var arrArt=$scope.klgList.articles = data[1];
+                        var arrCat=$scope.klgList.category;         
+                        var i=0,l1=arrArt.length,l2=arrCat.length;
+                        for(i;i<l1;i++){
+                            var j=0;
+                            for(j;j<l2;j++){
+                                if(arrArt[i].category==arrCat[j].id){
+                                    //category statics
+                                    arrCat[j].count++;
+                                    break;
+                                }
+                            }
+                        } 
+                   });
+                var s="db/pagination.php?table=knowledge&items=id,title,category&catid="+$routeParams.catid+"&page="+$routeParams.page;
+                if($routeParams.catid==0){
+                    s="db/pagination.php?table=knowledge&items=id,title,category&page="+$routeParams.page
+                }
+                $http.get(s).
+                    success(function(data){
+                        $scope.klgList.pages=data[0];
+                        var arrArt=$scope.klgList.articles = data[1];
+                        var arrCat=$scope.klgList.category;                
+                        var i=0,l1=arrArt.length,l2=arrCat.length;
+                        for(i;i<l1;i++){
+                            var j=0;
+                            for(j;j<l2;j++){
+                                if(arrArt[i].category==arrCat[j].id){
+                                    arrArt[i].category=arrCat[j].name;
+                                    break;
+                                }
+                            }
+                        } 
+                   });
             });
     }])
     .controller("knowledgeDetailsCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){
@@ -223,7 +267,7 @@ angular.module("app.controllers",[])
             date:"",
             category:""
         };
-        $http.get("db/r.php?tables=knowledge&items=title,content,date,category&id="+$routeParams.id).
+        $http.get("db/klgDetails.php?id="+$routeParams.id).
             success(function(data){
                $scope.klgDetails=data[0];
             });
