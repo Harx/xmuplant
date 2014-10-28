@@ -1,30 +1,37 @@
 <div id="about" class="row">
-    <div class="col-xs-12 col-md-2">
-        <div class="list-group">
-            <a class="list-group-item text-center" ng-class="{active:about.id==1}" href="#/about/1">网站介绍</a>
-
-            <a class="list-group-item text-center" ng-class="{active:about.id==2}" href="#/about/2">联系方式</a>
-
-            <a class="list-group-item text-center" ng-class="{active:about.id==3}" href="#/about/3">版权声明</a>
-
-            <a class="list-group-item text-center" ng-class="{active:about.id==4}" href="#/about/4">我要传图</a>
-
-            <a class="list-group-item text-center" ng-class="{active:about.id==5}" href="#/about/5">更新日志</a>
+    <div id="about-nav" class="col-xs-12 col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>栏目</strong> 
+            </div>
+            <div class="list-group">
+                <a class="list-group-item" ng-class="{active:about.id==1}" href="#/about/1">网站介绍</a>
+                <a class="list-group-item" ng-class="{active:about.id==2}" href="#/about/2">联系方式</a>
+                <a class="list-group-item" ng-class="{active:about.id==3}" href="#/about/3">版权声明</a>
+                <a class="list-group-item" ng-class="{active:about.id==4}" href="#/about/4">我要传图</a>
+                <a class="list-group-item" ng-class="{active:about.id==5}" href="#/about/5">更新日志</a>
+            </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-10">
-        <div class="card">
-            <div ng-if="about.id==1||about.id==2||about.id==3||about.id==4">
-                <h4>{{about.title}}</h4>
-                <hr>
-                <div class="asHtml" ng-bind-html="about.content | htmlTrust"></div>
-            </div>
-
-            <div ng-if="about.id==5" ng-repeat="log in sblog">
-                <hr ng-if="$index!=0">
-                <h4>{{log.title}}</h4> 
-                <div class="asHtml" ng-bind-html="log.content | htmlTrust"></div>
-            </div>
+    <div id="about-content" class="col-xs-12 col-md-7">
+        <!--        id 1-4  -->
+        <div class="panel panel-default" ng-if="about.id==1||about.id==2||about.id==3||about.id==4">
+           <div class="panel-heading">
+               <strong class="panel-title">{{about.title}}</strong>
+           </div>        
+            <div class="asHtml panel-body" ng-bind-html="about.content | htmlTrust"></div>
+        </div>
+        <!--        updates blog -->
+        <div class="panel panel-default" ng-if="about.id==5">
+           <div class="panel-heading">
+               <strong class="panel-title">更新日志</strong>
+           </div>            
+           <div class="list-group">
+               <div class="list-group-item" ng-repeat="log in sblog">                   
+                    <strong>{{log.title}}</strong> 
+                    <div class="asHtml" ng-bind-html="log.content | htmlTrust"></div>               
+               </div>
+           </div>
         </div>
 
     </div>

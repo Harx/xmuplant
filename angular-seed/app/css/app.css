@@ -1,5 +1,5 @@
 /* app css stylesheet */
-
+/* nav active color #0084B4 */
 /* 全局 */
 body{
 	background-color:#C0DEED;    
@@ -93,4 +93,32 @@ body{
 .pagination {
 /*    position: fixed;*/
 /*    bottom: 10px;*/
+}
+#about .panel.panel-default{
+    border: none;
+}
+#about-nav .list-group-item {
+    padding: 6px 15px;
+    border: none;
+    border-left: 3px solid white !important;
+    font-size: 12px;
+    font-weight:600;
+}
+#about-nav div.list-group a.active,#about div.list-group a:hover{
+    background-color: white;
+    color: #0084B4;
+    border-left: 3px solid #0084B4 !important;
+}
+#about-nav .panel-heading {
+    border: none;
+    background-color: white;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#about-content .panel-heading {
+    background-color: white;
+}
+#about-content .panel-body:before{
+    content: none;
 }
