@@ -18,7 +18,9 @@ foreach($name_cn as $n){
     $result_a[] = $a;
   } else {
     $a = mysqli_fetch_assoc($s);
-    $a['img_name'] = explode(",", $a['img_name'])[0];
+    $tmp=array();
+    $tmp=explode(",", $a['img_name']);
+    $a['img_name'] = $tmp[0];
     $result_a[] = $a;
   }
 }
