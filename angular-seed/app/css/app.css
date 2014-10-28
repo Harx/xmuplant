@@ -2,7 +2,8 @@
 
 /* 全局 */
 body{
-/*	background-color:#C0DEED;*/    
+	background-color:#C0DEED;    
+/*    background-color:#ededed;*/
 }
 
 /*     内容外层修饰 */
@@ -81,11 +82,15 @@ body{
 }
 
 /* 关于我们 */
-#about {
+#about,#knowledgeList,#knowledgeDetails {
     padding-top: 20px;
     padding-bottom: 20px;
 }
 /*     内容缩进 */
 #about .card div>div {
     padding: 0px 30px;
+}
+.pagination {
+/*    position: fixed;*/
+/*    bottom: 10px;*/
 }
