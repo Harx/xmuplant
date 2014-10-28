@@ -75,7 +75,7 @@ angular.module("app.controllers",[])
         $scope.isActive=function(route){
             return $location.path().indexOf(route)==0?true:false;
         }
-        
+
     }])
     .controller("mapCtrl",["$scope","$http",function($scope,$http){
         $scope.species={
@@ -112,12 +112,14 @@ angular.module("app.controllers",[])
                         var marker=new BMap.Marker(new BMap.Point(longitudeArr[j],latitudeArr[j]));
                         map.addOverlay(marker);
 
-                        // 参考: http://blog.csdn.net/sup_heaven/article/details/8461569
-                        var mInfo = '<p>' + name_cn+ ' ' + name_en + '</p>'
-                        marker.addEventListener("click", function(){
-                            this.openInfoWindow(new BMap.InfoWindow(mInfo));
-                            $scope.openInfo(id);
-                        });
+                        // 参考: 《javascrpt语言精粹》 p39页闭包。
+                        (function(mId){
+                          var mInfo = '<p>' + name_cn+ ' ' + name_en + '</p>';
+                          marker.addEventListener("click", function(){
+                              this.openInfoWindow(new BMap.InfoWindow(mInfo));
+                              $scope.openInfo(mId);
+                          });
+                        })(id);
                     }
                 }
             }).
@@ -126,7 +128,7 @@ angular.module("app.controllers",[])
             });
 
         $scope.openInfo=function(id){
-            $http.get("db/r.php?items=id,name_cn,name_en,name_ot,division,family,genus,distribution&tables=").
+            $http.get("db/r.php?items=id,name_cn,name_en,name_ot,division,family,genus,distribution&id=" + id).
                 success(function(data){
                     $scope.species=data[0];
 
@@ -179,7 +181,8 @@ angular.module("app.controllers",[])
                 {
                     id:"",
                     name_cn:"",
-                    name_en:""
+                    name_en:"",
+                    img_name:""
                 }
             ]
         };
@@ -325,7 +328,7 @@ angular.module("app.controllers",[])
                 var s=$scope.species=data[0];
 
                 var imgNames=$scope.species.img_name.split(",");
-                $scope.species.imgSrc=[];
+                $scope.species.imgSrc=imgNames;
 
                 var argument="?division="+ s.division+"&family="+ s.family+"&genus="+ s.genus;
                 $http.get("db/species_class.php"+argument).

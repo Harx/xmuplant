@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row wrapper">
     <div id="map" class="col-xs-12 col-md-8" style="height:500px;">
 
     </div>
@@ -44,5 +44,10 @@
     <p>{{species.history}}</p>
 </div>
 <div class="row">
-    {{species.imgSrc}}
+
+    <div ng-repeat="src in species.imgSrc">
+<!--       <img ng-show="src" src="{{'http://xmuplant-upload.stor.sinaapp.com/' +src}}"> -->
+      <img ng-show="src" src="{{'http://xmuplant.qiniudn.com/' +src}}">
+    </div>
+
 </div>

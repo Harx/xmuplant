@@ -1,4 +1,4 @@
-<div id="about" class="row">
+<div id="about" class="row wrapper">
     <div id="about-nav" class="left-nav col-xs-12 col-md-2">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -16,22 +16,22 @@
     <div id="about-content" class="col-xs-12 col-md-8">
         <!--        id 1-4  -->
         <div class="panel panel-default" ng-if="about.id==1||about.id==2||about.id==3||about.id==4">
-           <div class="panel-heading">
-               <strong class="panel-title">{{about.title}}</strong>
-           </div>        
+            <div class="panel-heading">
+                <strong class="panel-title">{{about.title}}</strong>
+            </div>
             <div class="asHtml panel-body" ng-bind-html="about.content | htmlTrust"></div>
         </div>
         <!--        updates blog -->
         <div class="panel panel-default" ng-if="about.id==5">
-           <div class="panel-heading">
-               <strong class="panel-title">更新日志</strong>
-           </div>            
-           <div class="list-group">
-               <div class="list-group-item" ng-repeat="log in sblog">                   
+            <div class="panel-heading">
+                <strong class="panel-title">更新日志</strong>
+            </div>
+            <div class="list-group">
+                <div class="list-group-item" ng-repeat="log in sblog">
                     <strong>{{log.title}}</strong> 
-                    <div class="asHtml" ng-bind-html="log.content | htmlTrust"></div>               
-               </div>
-           </div>
+                    <div class="asHtml" ng-bind-html="log.content | htmlTrust"></div>
+                </div>
+            </div>
         </div>
 
     </div>
