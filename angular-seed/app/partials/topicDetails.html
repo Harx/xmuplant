@@ -1,13 +1,16 @@
-<div class="col-md-2 col-xs-12">
-    <h2>{{topicDetails.title}}</h2>
-    <p>{{topicDetails.d}}</p>
-</div>
+<div class="row wrapper">
+  <div class="col-md-2 col-xs-12">
+      <h2>{{topicDetails.title}}</h2>
+      <p>{{topicDetails.d}}</p>
+  </div>
 
-<div class="col-md-10 col-xs-12">
-    <div class="thumbnail col-md-3 col-xs-12" ng-repeat="species in topicDetails.s">
-        <a href="#/speciesDetails/{{species.id}}">
-            <img src="upload/default.jpg"/>
-            <p>{{species.name_cn}}</p>
-        </a>
-    </div>
+  <div class="col-md-10 col-xs-12">
+      <div class="thumbnail col-md-3 col-xs-12" ng-repeat="species in topicDetails.s">
+          <a href="#/speciesDetails/{{species.id}}">
+              <img src="upload/default.jpg"/>
+              <p>{{species.name_cn}}</p>
+          </a>
+      </div>
+  </div>
+
 </div>

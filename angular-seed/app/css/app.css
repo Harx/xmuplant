@@ -2,12 +2,14 @@
 
 /* 全局 */
 body{
+  padding-top: 50px;
 /*	background-color:#C0DEED;*/    
 }
 
 /*     内容外层修饰 */
 .wrapper {
-    padding-top: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 /*    卡片风格*/
 .card{
@@ -81,10 +83,10 @@ body{
 }
 
 /* 关于我们 */
-#about {
+/*#about {
     padding-top: 20px;
     padding-bottom: 20px;
-}
+}*/
 /*     内容缩进 */
 #about .card div>div {
     padding: 0px 30px;

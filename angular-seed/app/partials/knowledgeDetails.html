@@ -1,5 +1,5 @@
 <!--{{klgDetails}}-->
-<div class="row">
+<div class="row wrapper">
     <div class="col-xs-12 col-md-10">
         <h2>
             {{klgDetails.title}}
@@ -7,7 +7,8 @@
         </h2>
         <hr>
         <div>
-            <pre>{{klgDetails.content}}</pre>
+<!--             <pre>{{klgDetails.content}}</pre> -->
+            <div class="card" ng-bind-html="klgDetails.content | htmlTrust"></div>
         </div>
     </div>
     <div class="col-xs-12 col-md-2">
