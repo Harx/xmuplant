@@ -44,5 +44,10 @@
     <p>{{species.history}}</p>
 </div>
 <div class="row">
-    {{species.imgSrc}}
+
+    <div ng-repeat="src in species.imgSrc">
+<!--       <img ng-show="src" src="{{'http://xmuplant-upload.stor.sinaapp.com/' +src}}"> -->
+      <img ng-show="src" src="{{'http://xmuplant.qiniudn.com/' +src}}">
+    </div>
+
 </div>

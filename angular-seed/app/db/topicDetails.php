@@ -9,16 +9,17 @@ $result = mysqli_fetch_assoc(mysqli_query($db, $query));
 $result_a = array();
 $name_cn = explode(",", $result['s']);
 foreach($name_cn as $n){
-  $query = "select id,name_cn,name_en from species where name_cn = \"".$n."\"";
+  $query = "select id,name_cn,name_en,img_name from species where name_cn = '$n'";
   $s = mysqli_query($db, $query);
   if (mysqli_num_rows($s) == 0){
     $a = array();
-    $a['id'] = "";
     $a['name_cn'] = $n;
-    $a['name_en'] = "网站暂未收录";
+    $a['name_en'] = "暂未收录";
     $result_a[] = $a;
   } else {
-    $result_a[] = mysqli_fetch_assoc($s);
+    $a = mysqli_fetch_assoc($s);
+    $a['img_name'] = explode(",", $a['img_name'])[0];
+    $result_a[] = $a;
   }
 }
 

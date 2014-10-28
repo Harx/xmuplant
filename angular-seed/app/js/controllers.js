@@ -181,7 +181,8 @@ angular.module("app.controllers",[])
                 {
                     id:"",
                     name_cn:"",
-                    name_en:""
+                    name_en:"",
+                    img_name:""
                 }
             ]
         };
@@ -283,7 +284,7 @@ angular.module("app.controllers",[])
                 var s=$scope.species=data[0];
 
                 var imgNames=$scope.species.img_name.split(",");
-                $scope.species.imgSrc=[];
+                $scope.species.imgSrc=imgNames;
 
                 var argument="?division="+ s.division+"&family="+ s.family+"&genus="+ s.genus;
                 $http.get("db/species_class.php"+argument).

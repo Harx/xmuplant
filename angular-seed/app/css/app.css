@@ -91,3 +91,13 @@ body{
 #about .card div>div {
     padding: 0px 30px;
 }
+
+/* 专题/details */
+a.disabled {
+  text-decoration: none;
+  color: #828282;
+}
+a.disabled:hover {
+  text-decoration: none;
+  color: #828282;
+}
