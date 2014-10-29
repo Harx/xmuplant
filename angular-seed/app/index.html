@@ -56,15 +56,17 @@
             </ul>
             <!--导航栏上的搜索组件-->
             <div class="navbar-form navbar-right" id="search">
-               <div class=" input-group">                   
-<!--                    <label class="sr-only" for="search-query">搜索框</label>-->
-                    <input class="form-control" type="text" id="search-query" placeholder="请输入物种名（中/英）" autocomplete="off" ng-model="$root.keyword"/>
-                    <span class="input-group-btn">
-                        <a href="#/search/{{$root.keyword|| 'nothing'}}" class="btn btn-info">   
-                            <span class="glyphicon glyphicon-search"></span>         
-                            <span class="sr-only">搜索按钮</span>
-                        </a>
-                    </span>
+               <div class=" input-group">
+                    <form ng-submit="search()">
+    <!--                    <label class="sr-only" for="search-query">搜索框</label>-->
+                        <input class="form-control" type="text" id="search-query" placeholder="请输入物种名（中/英）" autocomplete="off" ng-model="keyword"/>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-info">   
+                                <span class="glyphicon glyphicon-search"></span>         
+                                <span class="sr-only">搜索按钮</span>
+                            </button>
+                        </span>
+                    </form>
                </div>
 
             </div>
