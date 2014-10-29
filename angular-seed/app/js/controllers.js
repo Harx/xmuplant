@@ -200,7 +200,7 @@ angular.module("app.controllers", [])
                         $scope.system.list = data;
 
                         // #/1/1/0
-                        if ($scope.system.family.id !== 0) {
+                        if ($scope.system.family.id != 0) {
                             $http.get("db/system.php?table=genus&id=" + $scope.system.family.id).success(function (data) {
                                 var arr = $scope.system.arrFamily;
                                 var id = $scope.system.family.id;
