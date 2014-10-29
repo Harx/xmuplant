@@ -5,16 +5,20 @@
   </div>
 
   <div class="col-md-10 col-xs-12">
-      <div class="thumbnail col-md-3 col-xs-12" ng-repeat="species in topicDetails.s">
+      <div class="col-md-3 col-xs-12" ng-repeat="species in topicDetails.s">
 
-          <a ng-show="species.id" href="#/speciesDetails/{{species.id}}">
+          <a ng-show="species.id" href="#/speciesDetails/{{species.id}}" class="thumbnail">
 <!--               <img src="{{'http://xmuplant-upload.stor.sinaapp.com/'+species.img_name}}"/> -->
               <img src="{{species.img_name ? 'http://xmuplant.qiniudn.com/'+species.img_name : 'upload/default.jpg'}}"/>
-              <h4>{{species.name_cn}}</h4>
+              <div class="caption">
+                <h4>{{species.name_cn}}</h4>
+              </div>
           </a>
-          <a ng-hide="species.id" class="disabled">
+          <a ng-hide="species.id" class="thumbnail disabled">
               <img src="upload/default.jpg"/>
-              <h4>{{species.name_cn}} （{{species.name_en}}）</h4>
+              <div class="caption">
+                <h4>{{species.name_cn}} （{{species.name_en}}）</h4>
+              </div>
           </a>
       </div>
   </div>

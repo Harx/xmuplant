@@ -151,10 +151,40 @@ angular.module("app.controllers",[])
                 })
         }
     }])
-    .controller("categoryCtrl",["$scope",'$routeParams',function($scope,$routeParams){
+    .controller("categoryCtrl",["$scope","$http",'$routeParams',function($scope,$http,$routeParams){
         $scope.category={
-
+          division: [],
+          divisionBool: [],
+          family: [],
+          familyBool: [],
+          genus: []
         }
+        
+        $http.get("db/r.php?items=*&tables=division").success(function(data){
+          $scope.category.division = data;
+        });
+        
+        $scope.division = function(id){
+          if ($scope.category.divisionBool[id]){
+            $scope.category.divisionBool[id] = false;
+          } else {
+            $http.get("db/family.php?id=" + id).success(function(data){
+              $scope.category.family[id] = data;
+              $scope.category.divisionBool[id] = true;
+            });
+          }
+        }
+        $scope.family = function(id){
+          if ($scope.category.familyBool[id]){
+            $scope.category.familyBool[id] = false;
+          } else {
+            $http.get("db/genus.php?id=" + id).success(function(data){
+              $scope.category.genus[id] = data;
+              $scope.category.familyBool[id] = true;
+            });
+          }
+        }
+        
     }])
     .controller("topicListCtrl",["$scope","$http","$routeParams",function($scope,$http,$routeParams){
         $scope.topic={
