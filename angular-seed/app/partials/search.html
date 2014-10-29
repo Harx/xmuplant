@@ -11,7 +11,7 @@
                 <p ng-if="search.keyword!='nothing'&&!search.result[0]">检索无结果，请尝试更改查询条件</p>
                 <p><span ng-if="search.keyword!='nothing'">检索关键词为：<mark>{{search.keyword}}</mark></p>
                 <p ng-repeat="species in search.result">
-                    <a href="#/speciesDetails/{{species.id}}">{{species.name_cn+" ("+species.name_ot+") " + species.name_en}}</a>
+                    <a href="#/speciesDetails/{{species.id}}">{{species.name_cn}} {{species.name_ot ? "("+species.name_ot+")" : ''}} {{species.name_en}}</a>
                 </p>                
             </div>
         </div>

@@ -71,11 +71,16 @@ angular.module("app.controllers",[])
                 $scope.statics=data;
             });
     }])
-    .controller("navigationCtrl",["$scope","$rootScope","$location",function($scope,$rootScope,$location){
+    .controller("navigationCtrl",["$scope","$location",function($scope,$location){
         $scope.isActive=function(route){
             return $location.path().indexOf(route)==0?true:false;
         }
-
+        $scope.search = function(){
+          if ($scope.keyword){
+            $location.path("/search/" + $scope.keyword);
+            $scope.keyword = '';
+          }
+        }
     }])
     .controller("mapCtrl",["$scope","$http",function($scope,$http){
         $scope.species={
@@ -373,20 +378,18 @@ angular.module("app.controllers",[])
                 })
         }
     }])
-    .controller("searchCtrl",["$scope","$rootScope","$http","$routeParams",function($scope,$rootScope,$http,$routeParams){
+    .controller("searchCtrl",["$scope","$http","$routeParams",function($scope,$http,$routeParams){
         $scope.search={
             result:[],
             total:0,
             keyword:$routeParams.keyword
-        };        
-        if($scope.search.keyword!="nothing"){
-            $rootScope.keyword="";
-            $http.get("db/search.php?keyword="+$scope.search.keyword)
-                .success(function (data) {
-                    $scope.search.result = data.reverse();
-                    $scope.search.total = data.length;
-                });
-        }
+        };
+        
+        $http.get("db/search.php?keyword="+$scope.search.keyword)
+            .success(function (data) {
+                $scope.search.result = data.reverse();
+                $scope.search.total = data.length;
+            });
     }])
     .controller("messagesCtrl",["$scope",function($scope){
 
