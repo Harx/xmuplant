@@ -4,15 +4,15 @@ require("db_con.php");
 
 $table=$_GET['table'];
 $items=$_REQUEST['items'];
-$pageVolume=5;
+$pageVolume=30;//number of items in one page
 $page=$_REQUEST['page'];
 
-$where="";
+$where="";//knowledge list
 if(isset($_REQUEST['catid'])){
     $where="where category = ".$_REQUEST['catid'];
 }
 $ret=array();
-//[0]为总页数
+//[0]为页数数组
 $count=0;
 $result=mysqli_query($db,"select id from $table ".$where);
 while($row=mysqli_fetch_assoc($result)){

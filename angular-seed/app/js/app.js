@@ -31,7 +31,7 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: "partials/topicDetails.html",
                 controller: 'topicDetailsCtrl'
             })
-            .when('/catalog',{
+            .when('/catalog/:page',{
                 templateUrl:"partials/catalog.html",
                 controller:'catalogCtrl'
             })
