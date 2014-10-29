@@ -26,11 +26,15 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'partials/topicList.html',
                 controller: "topicListCtrl"
             })
-        //TODO not clear if /details will conflict with /:page ,wait practice
-        .when('/topic/details/:id', {
-            templateUrl: "partials/topicDetails.html",
-            controller: 'topicDetailsCtrl'
-        })
+            //TODO not clear if /details will conflict with /:page ,wait practice
+            .when('/topic/details/:id', {
+                templateUrl: "partials/topicDetails.html",
+                controller: 'topicDetailsCtrl'
+            })
+            .when('/catalog',{
+                templateUrl:"partials/catalog.html",
+                controller:'catalogCtrl'
+            })
             .when('/knowledge/list/:catid/:page', {
                 templateUrl: 'partials/knowledgeList.html',
                 controller: "knowledgeListCtrl"

@@ -272,11 +272,10 @@ angular.module("app.controllers",[])
                 $scope.topicDetails=data;
             });
     }])
-    .controller("catalogCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){
-        $scope.items={};
-        $http.get("db/r.php?table="+$routeParams.cat).
-            success(function(data){
-                 
+    .controller("catalogCtrl",["$scope","$http",function($scope,$http){
+        $scope.items=[];
+        $http.get("db/r.php?items=*").success(function(data){
+                 $scope.items=data;
         });
     }])
     .controller("knowledgeListCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){

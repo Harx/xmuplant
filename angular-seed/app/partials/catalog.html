@@ -1,0 +1,21 @@
+<div id="catalog" class="wrapper row">
+    <div class="col-md-12 col-md-12">
+        <div class="">
+           <table>
+               
+                <tr>
+                    <th>物种名称/中文/别名/英文</th>
+                    <th>门</th>
+                    <th>科</th>
+                    <th>属</th>
+                </tr>
+                <tr ng-repeat="species in items">
+                    <td>{{species.name_cn}}</td>
+                    <td>{{species.division}}</td>
+                    <td>{{species.family}}</td>
+                    <td>{{species.genus}}</td>
+                </tr>
+           </table>
+        </div>
+    </div>
+</div>
