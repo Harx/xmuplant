@@ -18,9 +18,9 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'partials/map.html',
                 controller: "mapCtrl"
             })
-            .when('/category/:id', {
-                templateUrl: 'partials/category.html',
-                controller: "categoryCtrl"
+            .when('/system/:dId/:fId/:gId', {
+                templateUrl: 'partials/system.html',
+                controller: "systemCtrl"
             })
             .when('/topic/list/:page', {
                 templateUrl: 'partials/topicList.html',

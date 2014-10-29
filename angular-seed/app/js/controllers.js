@@ -146,10 +146,86 @@ angular.module("app.controllers",[])
                 })
         }
     }])
-    .controller("categoryCtrl",["$scope",'$routeParams',function($scope,$routeParams){
-        $scope.category={
-
-        }
+    .controller("systemCtrl",["$scope",'$routeParams',"$http",function($scope,$routeParams,$http){
+        $scope.system={//不加system无法显示值
+            arrDivision:[],
+            arrFamily:[],
+            arrGenus:[],
+            arrSpecies:[],
+            division:{
+                id:$routeParams.dId,
+                title:""                
+            },
+            family:{
+                id:$routeParams.fId,
+                title:"family"                
+            },
+            genus:{
+                id:$routeParams.gId,
+                title:"genus"                
+            },
+            info:"hi",
+            list:[]
+        };
+        
+        // #/0/0/0
+        $http.get("db/system.php?table=division").success(function(data){
+            $scope.system.arrDivision=data;
+            $scope.system.list=data;
+            $scope.system.info=""
+            
+            // #/1/0/0
+            if($scope.system.division.id!=0){
+                $http.get("db/system.php?table=family&id="+$scope.system.division.id).success(function(data){
+                    var arr=$scope.system.arrDivision;
+                    var id=$scope.system.division.id;
+                    var i=0;l=arr.length;
+                    for(i;i<l;i++){
+                        if(arr[i].id==id){
+                            $scope.system.division.title=arr[i].name_cn+arr[i].name_en;
+                            $scope.system.info=arr[i].content;
+                        }
+                    }                    
+                    $scope.system.arrFamily=data;
+                    $scope.system.list=data;
+                    
+                    // #/1/1/0
+                    if($scope.system.family.id!=0){
+                        $http.get("db/system.php?table=genus&id="+$scope.system.family.id).success(function(data){
+                            var arr=$scope.system.arrFamily;
+                            var id=$scope.system.family.id;
+                            var i=0;l=arr.length;
+                            for(i;i<l;i++){
+                                if(arr[i].id==id){
+                                    $scope.system.family.title=arr[i].name_cn+arr[i].name_en;
+                                    $scope.system.info=arr[i].content;
+                                }
+                            }                               
+                            $scope.system.arrGenus=data;
+                            $scope.system.list=data;
+                            
+                            // #/1/1/1
+                            if($scope.system.genus.id!=0){
+                                $http.get("db/system.php?table=species&id="+$scope.system.genus.id).success(function(data){
+                                    var arr=$scope.system.arrGenus;
+                                    var id=$scope.system.genus.id;
+                                    var i=0;l=arr.length;
+                                    for(i;i<l;i++){
+                                        if(arr[i].id==id){
+                                            $scope.system.genus.title=arr[i].name_cn+arr[i].name_en;
+                                            $scope.system.info=arr[i].content;
+                                        }
+                                    }                               
+                                    $scope.system.arrSpecies=data;
+                                    $scope.system.list=data;                                    
+                                });                                
+                            }
+                        });
+                    }
+                });
+            }           
+            
+        })        
     }])
     .controller("topicListCtrl",["$scope","$http","$routeParams",function($scope,$http,$routeParams){
         $scope.topic={
@@ -190,6 +266,13 @@ angular.module("app.controllers",[])
             .success(function(data){
                 $scope.topicDetails=data;
             });
+    }])
+    .controller("catalogCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){
+        $scope.items={};
+        $http.get("db/r.php?table="+$routeParams.cat).
+            success(function(data){
+                 
+        });
     }])
     .controller("knowledgeListCtrl",["$scope","$routeParams","$http",function($scope,$routeParams,$http){
         $scope.klgList={

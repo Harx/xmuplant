@@ -63,19 +63,19 @@ body{
     padding: 10px;
     font-size: 16px;    
 }
-.left-nav .list-group-item {
+.left-nav .panel .list-group a.list-group-item {
     padding: 6px 15px;
     border: none;
-    border-left: 3px solid white !important;
+    border-left: 3px solid white;
     font-size: 12px;
-    font-weight:600;
+/*    font-weight:600;*/
 }
-.left-nav a.list-group-item.active,.left-nav a.list-group-item:hover{
+.left-nav .panel .list-group  a.list-group-item.active,.left-nav .panel .list-group a.list-group-item:hover{
     background-color: white;
     color: #0084B4;
-    border-left: 3px solid #0084B4 !important;
+    border-left-color:#0084B4;
 }
-.left-nav a.list-group-item.active>.badge,.left-nav a.list-group-item:hover>.badge{
+.left-nav .panel .list-group  a.list-group-item.active>.badge,.left-nav a.list-group-item:hover>.badge{
     color: white;
     background-color:  #0084B4;
 }
@@ -140,4 +140,62 @@ a.disabled:hover {
 
 #search .panel-body {
     min-height: 300px;
+}
+
+/*     系统分类/system.html*/
+#system {
+    font-size:12px !important;
+}
+#system .panel{
+    min-height: 600px;
+/*    padding-bottom: 20px;*/
+}
+#system_tree a.panel-heading{
+/*    border-left: 3px solid #ededed;*/
+    font-size: 14px;
+    display: block;
+    text-decoration: none;
+/*    color: black;*/
+    border-bottom: 3px solid #ededed;
+    padding: 10px ;
+}
+#system_tree a.panel-heading:hover{
+    color: white;
+    background-color: #0084B4;
+}
+#system_tree .list-group{
+    
+}
+#system_tree .list-group-item{
+/*    background-color: #ededed;*/
+/*    border-left-color: #ededed;*/
+}
+#system_tree a.list-group-item:hover{
+/*    border-left-color: #0084B4;*/
+}
+#system_content .panel-heading{
+    background-color: white;
+}
+#system_content .thumbnail{
+/*    border: none;*/
+/*    padding: 5px;*/
+/*    margin: 5px;*/
+}
+.thumbnail a{
+    text-decoration: none;
+    color: black;
+}
+.thumbnail p{
+    line-height: 25px;
+/*    width: 100%;*/
+/*    color: white;*/
+/*    background-color: rgba(0,0,0,0.5);*/
+    margin:0px;
+/*    padding: 0px;*/
+/*    position: absolute;*/
+/*    bottom:0px;*/
+}
+
+p {
+    text-indent:2em;
 }
