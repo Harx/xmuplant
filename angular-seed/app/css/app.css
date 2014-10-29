@@ -137,3 +137,7 @@ a.disabled:hover {
   text-decoration: none;
   color: #828282;
 }
+
+#search .panel-body {
+    min-height: 300px;
+}

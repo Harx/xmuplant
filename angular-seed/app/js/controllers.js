@@ -71,7 +71,7 @@ angular.module("app.controllers",[])
                 $scope.statics=data;
             });
     }])
-    .controller("navigationCtrl",["$scope","$location",function($scope,$location){
+    .controller("navigationCtrl",["$scope","$rootScope","$location",function($scope,$rootScope,$location){
         $scope.isActive=function(route){
             return $location.path().indexOf(route)==0?true:false;
         }
@@ -290,14 +290,20 @@ angular.module("app.controllers",[])
                 })
         }
     }])
-    .controller("searchCtrl",["$scope",function($scope){
+    .controller("searchCtrl",["$scope","$rootScope","$http","$routeParams",function($scope,$rootScope,$http,$routeParams){
         $scope.search={
-            sort:"name_cn",
-            keyword:"三角梅",
-            sort1:"name_cn",
-            keyword1:""
-        };
-
+            result:[],
+            total:0,
+            keyword:$routeParams.keyword
+        };        
+        if($scope.search.keyword!="nothing"){
+            $rootScope.keyword="";
+            $http.get("db/search.php?keyword="+$scope.search.keyword)
+                .success(function (data) {
+                    $scope.search.result = data.reverse();
+                    $scope.search.total = data.length;
+                });
+        }
     }])
     .controller("messagesCtrl",["$scope",function($scope){
 

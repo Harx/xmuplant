@@ -14,14 +14,16 @@ if (isset($_GET['id'])){
 
 // 条件控制可读取的数据库表。
 $tables = "species";
-$tables_get=$_GET['tables'];
-if ($tables_get == "division"
- || $tables_get == "subject"
- || $tables_get == "knowledge"
- || $tables_get == "intro"
- || $tables_get == "klg_category"
- || $tables_get =="sblog" ){
-  $tables = $tables_get;
+if(isset($_GET['tables'])){
+    $tables_get=$_GET['tables'];
+    if ($tables_get == "division"
+     || $tables_get == "subject"
+     || $tables_get == "knowledge"
+     || $tables_get == "intro"
+     || $tables_get == "klg_category"
+     || $tables_get =="sblog" ){
+      $tables = $tables_get;
+    }
 }
 
 $query = "select ".$items." from ".$tables.$id;

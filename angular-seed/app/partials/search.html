@@ -1,13 +1,19 @@
-<h1>植物物种检索</h1>
-<div>
-    <select ng-model="search.sort1">
-        <option value="name_cn" selected="selected">中文名</option>
-        <option value="name_ot">别名</option>
-        <option value="name_en">拉丁名</option>
-    </select>
-    <input type="text" ng-model="search.keyword1" placeholder="输入物种名字...">
-    <button>检索</button>
-</div>
-<div>
-    {{search}}
+<div id="search" class="row wrapper">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>检索结果</strong>
+                <span ng-if="search.keyword!='nothing'">共{{search.total}}条</span>
+            </div>
+            <div class="panel-body">
+                <p ng-if="search.keyword=='nothing'">请在搜索框中输入查询条件</p>
+                <p ng-if="search.keyword!='nothing'&&!search.result[0]">检索无结果，请尝试更改查询条件</p>
+                <p><span ng-if="search.keyword!='nothing'">检索关键词为：<mark>{{search.keyword}}</mark></p>
+                <p ng-repeat="species in search.result">
+                    <a href="#/speciesDetails/{{species.id}}">{{species.name_cn+" ("+species.name_ot+") " + species.name_en}}</a>
+                </p>                
+            </div>
+        </div>
+    </div>
 </div>

@@ -43,7 +43,7 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'partials/about.html',
                 controller: "aboutCtrl"
             })
-            .when('/search', {
+            .when('/search/:keyword', {
                 templateUrl: 'partials/search.html',
                 controller: "searchCtrl"
             })
