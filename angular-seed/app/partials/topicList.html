@@ -1,29 +1,32 @@
-{{klgList}}
-<div class="container">
-    <h1>专题</h1>
-    <hr>
-    <table class="table table-striped table-hover">
-        <tr>
-            <th>编号</th>
-            <th>标题</th>
-            <th>描述</th>
-        </tr>
-        <tr ng-repeat="topic in topic.topics">
-            <td>{{topic.id}}</td>
-            <td>
-                <a href="#/topic/details/{{topic.id}}">{{topic.title}}</a>
-            </td>
-            <td>{{topic.d}}</td>
-        </tr>
-
-
-    </table>
+<div class="wrapper row">
+    <div class="col-md-12 col-xs-12">
+        <table class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>专题名称</th>
+                    <th>专题描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="topic in topic.topics">
+                    <td style="min-width:50px;">{{topic.id}}</td>
+                    <td style="min-width:100px;">
+                        <a href="#/topic/details/{{topic.id}}">{{topic.title}}</a>
+                    </td>
+                    <td  >{{topic.d}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <ul class="pagination">
-        <li class="disabled active"><a href="#">&laquo;</a></li>
+        <li class="disabled active"><a href="#">&laquo;</a>
+        </li>
         <li ng-repeat="page in topic.pages">
             <a href="#/topic/list/{{page}}">{{page}}</a>
         </li>
-        <li class="disabled"><a href="#">&raquo;</a></li>
+        <li class="disabled"><a href="#">&raquo;</a>
+        </li>
     </ul>
 </div>
