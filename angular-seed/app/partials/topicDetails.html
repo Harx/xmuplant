@@ -9,11 +9,11 @@
 
           <a ng-show="species.id" href="#/speciesDetails/{{species.id}}">
 <!--               <img src="{{'http://xmuplant-upload.stor.sinaapp.com/'+species.img_name}}"/> -->
-              <img src="{{species.img_name ? 'http://xmuplant.qiniudn.com/'+species.img_name : 'upload/default.jpg'}}"/>
+              <img  class="lazyload" data-src="{{species.img_name ? 'http://xmuplant.qiniudn.com/'+species.img_name : 'upload/default.jpg'}}"/>
               <h4>{{species.name_cn}}</h4>
           </a>
           <a ng-hide="species.id" class="disabled">
-              <img src="upload/default.jpg"/>
+              <img  class="lazyload" data-src="upload/default.jpg"/>
               <h4>{{species.name_cn}} （{{species.name_en}}）</h4>
           </a>
       </div>
