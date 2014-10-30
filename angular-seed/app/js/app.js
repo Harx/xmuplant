@@ -55,7 +55,7 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'partials/messages.html',
                 controller: "messagesCtrl"
             })
-            .when('/speciesDetails/:id', {
+            .when('/species/details/:id', {
                 templateUrl: 'partials/speciesDetails.html',
                 controller: 'speciesDetailsCtrl'
             })

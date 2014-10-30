@@ -15,7 +15,7 @@
                 <a ng-if="system.genus.id==0" href="#system/{{system.division.id==0?item.id:system.division.id}}/{{((system.division.id!=0)&&(system.family.id==0))?item.id:system.family.id}}/{{system.family.id!=0?item.id:system.genus.id}}" class="list-group-item" ng-repeat="item in system.list">
                     {{item.name_cn+item.name_en}}
                 </a>
-                <a ng-if="system.genus.id!=0" href="#/speciesDetails/{{item.id}}" class="list-group-item" ng-repeat="item in system.list">
+                <a ng-if="system.genus.id!=0" href="#/species/details/{{item.id}}" class="list-group-item" ng-repeat="item in system.list">
                     {{item.name_cn+item.name_en}}
                 </a>
             </div>
@@ -35,7 +35,7 @@
 <!--                            <img class="lazyload" data-src="upload/default.jpg" />-->
                             <p class="text-center">{{item.name_cn+item.name_en}}</p>
                         </a>
-                        <a ng-if="system.genus.id!=0" href="#/speciesDetails/{{item.id}}">
+                        <a ng-if="system.genus.id!=0" href="#/species/details/{{item.id}}">
                             <!--                        <img  class="lazyload" data-src="{{system.'http://xmuplant-upload.stor.sinaapp.com/'+species.img_name}}"/> -->
                             <img class="lazyload" data-src="{{item.img_name ? 'http://xmuplant.qiniudn.com/'+item.img_name : 'upload/default.jpg'}}" />
                             <!--                            <img class="lazyload" data-src="upload/default.jpg" />-->

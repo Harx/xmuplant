@@ -121,7 +121,7 @@ angular.module("app.controllers", [])
                         (function (mId) {
                             var mInfo =
                                 '<img src="'+src+'" style="height:100px;display:block;margin:0px auto;padding:0px;"/>'
-                                +'<a href="#/speciesDetails/'+id+'" style="display:block;margin:0px auto;padding:0px;">'
+                                +'<a href="#/species/details/'+id+'" style="display:block;margin:0px auto;padding:0px;">'
                                 + name_cn + ' ' + name_en + '</a>';
                             marker.addEventListener("click", function () {
                                 this.openInfoWindow(new BMap.InfoWindow(mInfo));
