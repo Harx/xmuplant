@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin: *');
 require("db_con.php");
 
 
-$query = "select id,name_cn,name_en,longitude,latitude from species where longitude != ''";
+$query = "select id,name_cn,name_en,img_name,distribution,longitude,latitude from species where longitude != ''";
 
 $result = mysqli_query($db, $query);
 

@@ -112,8 +112,12 @@ angular.module("app.controllers", [])
                 for (i; i < species.length; i++) {
                     var longitudeArr = species[i].longitude.split(',');
                     var latitudeArr = species[i].latitude.split(',');
+                    var img_name=species[i].img_name.split(',');
+                    var src=img_name[0]?'http://xmuplant.qiniudn.com/'+img_name[0] : 'upload/default.jpg';
+//                    var src=img_name[0]?'http://xmuplant-upload.stor.sinaapp.com/'+img_name[0] : 'upload/default.jpg';
                     var name_cn = species[i].name_cn;
                     var name_en = species[i].name_en;
+                    var distribution =species[i].distribution;
                     var id = species[i].id;
                     var j = 0;
                     for (j; j < longitudeArr.length; j++) {
@@ -122,7 +126,10 @@ angular.module("app.controllers", [])
 
                         // 参考: 《javascrpt语言精粹》 p39页闭包。
                         (function (mId) {
-                            var mInfo = '<p>' + name_cn + ' ' + name_en + '</p>';
+                            var mInfo =
+                                '<img src="'+src+'" style="height:100px;display:block;margin:0px auto;padding:0px;"/>'
+                                +'<a href="#/speciesDetails/'+id+'" style="display:block;margin:0px auto;padding:0px;">'
+                                + name_cn + ' ' + name_en + '</a>';
                             marker.addEventListener("click", function () {
                                 this.openInfoWindow(new BMap.InfoWindow(mInfo));
                                 $scope.openInfo(mId);
