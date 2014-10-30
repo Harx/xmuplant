@@ -92,17 +92,11 @@ angular.module("app.controllers", [])
                 name_cn: "",
                 name_en: "",
                 name_ot: "",
-                division: "",
-                family: "",
-                genus: "",
-                distribution: "",
-
                 longitude: "",
                 latitude: ""
             };
             $http.get("db/map.php").
             success(function (data) {
-                $scope.mapp = data;
                 var species = data,
                     map = new BMap.Map("map");
                 map.addControl(new BMap.MapTypeControl()); //添加地形控制器
@@ -117,7 +111,6 @@ angular.module("app.controllers", [])
 //                    var src=img_name[0]?'http://xmuplant-upload.stor.sinaapp.com/'+img_name[0] : 'upload/default.jpg';
                     var name_cn = species[i].name_cn;
                     var name_en = species[i].name_en;
-                    var distribution =species[i].distribution;
                     var id = species[i].id;
                     var j = 0;
                     for (j; j < longitudeArr.length; j++) {
@@ -132,7 +125,6 @@ angular.module("app.controllers", [])
                                 + name_cn + ' ' + name_en + '</a>';
                             marker.addEventListener("click", function () {
                                 this.openInfoWindow(new BMap.InfoWindow(mInfo));
-                                $scope.openInfo(mId);
                             });
                         })(id);
                     }
@@ -141,25 +133,6 @@ angular.module("app.controllers", [])
             error(function (data) {
 
             });
-
-            $scope.openInfo = function (id) {
-                $http.get("db/r.php?items=id,name_cn,name_en,name_ot,division,family,genus,distribution&id=" + id).
-                success(function (data) {
-                    $scope.species = data[0];
-
-                    var params = "?division=" + data[0].division + "&family=" + data[0].family + "&genus=" + data[0].genus;
-                    $http.get("db/species_class.php" + params).
-                    success(function (data) {
-                        $scope.species.division = data['division'];
-                        $scope.species.family = data['family'];
-                        $scope.species.genus = data['genus'];
-                    }).
-                    error(function (data) {
-
-                    });
-
-                });
-            };
         }])
     .controller("systemCtrl", ["$scope", '$routeParams', "$http",
         function ($scope, $routeParams, $http) {
