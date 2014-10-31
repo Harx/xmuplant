@@ -28,18 +28,22 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="thumbnail col-md-3 col-xs-12" ng-repeat="item in system.list">
-                        <a ng-if="system.genus.id==0" href="#system/{{system.division.id==0?item.id:system.division.id}}/{{((system.division.id!=0)&&(system.family.id==0))?item.id:system.family.id}}/{{system.family.id!=0?item.id:system.genus.id}}">
+                    <div class="col-md-3 col-xs-12" ng-repeat="item in system.list">
+                        <a ng-if="system.genus.id==0" class="thumbnail" href="#system/{{system.division.id==0?item.id:system.division.id}}/{{((system.division.id!=0)&&(system.family.id==0))?item.id:system.family.id}}/{{system.family.id!=0?item.id:system.genus.id}}">
                             <!--                        <img  class="lazyload" data-src="{{system.'http://xmuplant-upload.stor.sinaapp.com/'+species.img_name}}"/> -->
                                                     <img  class="lazyload" data-src="{{item.img_name ? 'http://xmuplant.qiniudn.com/'+item.img_name : 'upload/default.jpg'}}" />
 <!--                            <img class="lazyload" data-src="upload/default.jpg" />-->
-                            <p class="text-center">{{item.name_cn+item.name_en}}</p>
+                            <div class="caption">
+                              <h4 class="text-center">{{item.name_cn+item.name_en}}</h4>
+                            </div>
                         </a>
-                        <a ng-if="system.genus.id!=0" href="#/species/details/{{item.id}}">
+                        <a ng-if="system.genus.id!=0" class="thumbnail" href="#/species/details/{{item.id}}">
                             <!--                        <img  class="lazyload" data-src="{{system.'http://xmuplant-upload.stor.sinaapp.com/'+species.img_name}}"/> -->
                             <img class="lazyload" data-src="{{item.img_name ? 'http://xmuplant.qiniudn.com/'+item.img_name : 'upload/default.jpg'}}" />
                             <!--                            <img class="lazyload" data-src="upload/default.jpg" />-->
-                            <p>{{item.name_cn+item.name_en}}</p>
+                            <div class="caption">
+                              <h4>{{item.name_cn+item.name_en}}</h4>
+                            </div>
                         </a>
                     </div>
                 </div>

@@ -129,10 +129,10 @@ body{
 }
 
 /* 专题/details */
-a.disabled {
+/*a.disabled {
   text-decoration: none;
   color: #828282;
-}
+}*/
 a.disabled:hover {
   text-decoration: none;
   color: #828282;
@@ -181,10 +181,10 @@ a.disabled:hover {
 /*    padding: 5px;*/
 /*    margin: 5px;*/
 }
-.thumbnail a{
+/*.thumbnail a{
     text-decoration: none;
     color: black;
-}
+}*/
 .thumbnail p{
     line-height: 25px;
 /*    width: 100%;*/
