@@ -1,12 +1,16 @@
 /* app css stylesheet */
 /* nav active color #0084B4 */
-/* 全局 */
+
+/* 全局------------------------------------------------- */
 *{
     border-radius: 0px !important;
 }
 body{
   padding-top: 50px;
 /*	background-color:#C0DEED;*/
+}
+p {
+    text-indent:2em;
 }
 
 /*     内容外层修饰 */
@@ -20,43 +24,12 @@ body{
     white-space: pre-wrap;
     word-wrap: break-word;
 }
-
-/* 导航条 */
-#header{
-    font-family: "黑体";
-/*设置高度会导致折叠的菜单背景色变透明*/
-/*    height: 50px;*/
+/*    重置panel样式*/
+.panel .panel-default .panel-heading{
     background-color: white;
-    border-bottom: 1px solid #ebebeb;
-    box-shadow:0 0 3px 0px #888;
-}
-    /*网站标志*/
-.navbar-brand{
-    padding:0px;
-}
-.navbar-brand a {
-    color: #0084B4;
-    display: block;
-    height: 50px;
-    padding: 0px 15px;
-}
-.navbar-brand a span{
-    vertical-align: middle;
-}
-.navbar-brand a:hover{
-    text-decoration: none;
-    border-bottom: 4px #0084B4  solid;
 }
 
-
-/* 左侧二级导航/panel ..subnav   */
-.panel{
-/*    border-radius: none;*/
-}
-.panel.panel-default{
-/*    border: none;*/
-/*    border-radius:none;*/
-}
+/*  左侧二级导航 ---------------------------------  */
 .left-nav .panel-heading {
     border: none;
     background-color: white;
@@ -80,7 +53,35 @@ body{
     background-color:  #0084B4;
 }
 
-/*   导航/navigation */
+/* 网站页头header --------------------------------------------1------- */
+#header{
+    font-family: "黑体";
+/*设置高度会导致折叠的菜单背景色变透明*/
+/*    height: 50px;*/
+    background-color: white;
+    border-bottom: 1px solid #ebebeb;
+    box-shadow:0 0 3px 0px #888;
+}
+
+/*网站标志*/
+.navbar-brand{
+    padding:0px;
+}
+.navbar-brand a {
+    color: #0084B4;
+    display: block;
+    height: 50px;
+    padding: 0px 15px;
+}
+.navbar-brand a span{
+    vertical-align: middle;
+}
+.navbar-brand a:hover{
+    text-decoration: none;
+    border-bottom: 4px #0084B4 solid;
+}
+
+/* 导航 */
 #header .nav a{    
     font-size: 18px;
     color: #66757F;
@@ -97,11 +98,7 @@ body{
     border-bottom: 4px #0084B4  solid;
 }
 
-/* 主页/home */
-#home {
-/*    margin-top: 40px;*/
-    color: steelblue;
-}
+/* 主页/home ------------------------------------------------2------ */
 #home .quote{
     font-family: "Times New Roman",Times,serif;
     font-size: 24px;
@@ -111,44 +108,12 @@ body{
     margin: 20px 0px;
 }
 
-/* 关于我们 */
-#about-content .panel-heading{
-    background-color: white;
-}
-#about-content .panel-body:before{
-    content: none;
-}
-
-/*  扩展知识列表/knowledge list*/
-#klgList_content .panel-heading{
-    background-color: white;
-}
-#klgList_content li.list-group-item>span{
-    display: inline-block;
-    width: 20px;
-}
-
-/* 专题/details */
-/*a.disabled {
-  text-decoration: none;
-  color: #828282;
-}*/
-a.disabled:hover {
-  text-decoration: none;
-  color: #828282;
-}
-
-#search .panel-body {
-    min-height: 300px;
-}
-
-/*     系统分类/system.html*/
+/* 系统分类/system----------------------------------------------3---------*/
 #system {
-    font-size:12px !important;
+    font-size:12px;
 }
 #system .panel{
     min-height: 600px;
-/*    padding-bottom: 20px;*/
 }
 #system_tree a.panel-heading{
 /*    border-left: 3px solid #ededed;*/
@@ -163,39 +128,25 @@ a.disabled:hover {
     color: white;
     background-color: #0084B4;
 }
-#system_tree .list-group{
-    
-}
-#system_tree .list-group-item{
-/*    background-color: #ededed;*/
-/*    border-left-color: #ededed;*/
-}
-#system_tree a.list-group-item:hover{
-/*    border-left-color: #0084B4;*/
-}
-#system_content .panel-heading{
-    background-color: white;
-}
-#system_content .thumbnail{
-/*    border: none;*/
-/*    padding: 5px;*/
-/*    margin: 5px;*/
-}
-/*.thumbnail a{
-    text-decoration: none;
-    color: black;
-}*/
-.thumbnail p{
-    line-height: 25px;
-/*    width: 100%;*/
-/*    color: white;*/
-/*    background-color: rgba(0,0,0,0.5);*/
-    margin:0px;
-/*    padding: 0px;*/
-/*    position: absolute;*/
-/*    bottom:0px;*/
+
+/* 专题/details -------------------------------------------------4----------- */
+a.disabled:hover {
+  text-decoration: none;
+  color: #828282;
 }
 
-p {
-    text-indent:2em;
+/* 扩展知识列表/knowledge list -------------------------------------5-----*/
+#klgList_content li.list-group-item>span{
+    display: inline-block;
+    width: 20px;
+}
+
+/* 关于我们 --------------------------------------------------------6------*/
+#about-content .panel-body:before{
+    content: none;
+}
+
+/* 搜索页/search-----------------------------------------------------7------*/
+#search .panel-body {
+    min-height: 300px;
 }
