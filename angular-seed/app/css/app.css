@@ -25,7 +25,7 @@ p {
     word-wrap: break-word;
 }
 /*    重置panel样式*/
-.panel .panel-default .panel-heading{
+.panel.panel-default > .panel-heading{
     background-color: white;
 }
 
