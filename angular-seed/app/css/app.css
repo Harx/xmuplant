@@ -1,6 +1,9 @@
 /* app css stylesheet */
 /* nav active color #0084B4 */
 /* 全局 */
+*{
+    border-radius: 0px !important;
+}
 body{
   padding-top: 50px;
 /*	background-color:#C0DEED;*/
@@ -10,13 +13,6 @@ body{
 .wrapper {
   padding-top: 20px;
   padding-bottom: 20px;
-}
-/*    卡片风格*/
-.card{
-	background-color: white;
-	border: 1px solid #e1e8ed;
-    padding: 10px;
-    border-radius: 6px;
 }
 /*      html转义样式*/
 .asHtml {
@@ -54,8 +50,12 @@ body{
 
 
 /* 左侧二级导航/panel ..subnav   */
+.panel{
+/*    border-radius: none;*/
+}
 .panel.panel-default{
 /*    border: none;*/
+/*    border-radius:none;*/
 }
 .left-nav .panel-heading {
     border: none;

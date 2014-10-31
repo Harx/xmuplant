@@ -4,14 +4,16 @@
         </div>
     </div>
     <div class="col-xs-12 col-md-9">
-        <div class="card">
-            <h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2>
                 {{klgDetails.title}}
                 <small>/ {{klgDetails.category}} / {{klgDetails.date}}</small>
                 <button onclick="window.history.back()  " class="btn btn-info pull-right">返回目录</button>
             </h2>
-            <hr>
-            <div ng-bind-html="klgDetails.content | htmlTrust"></div>
+                <hr>
+                <div ng-bind-html="klgDetails.content | htmlTrust"></div>
+            </div>
         </div>
     </div>
     <div class="col-xs-12 col-md-2">
