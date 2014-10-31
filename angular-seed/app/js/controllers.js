@@ -120,7 +120,7 @@ angular.module("app.controllers", [])
                         // 参考: 《javascrpt语言精粹》 p39页闭包。
                         (function (mId) {
                             var mInfo =
-                                '<img src="'+src+'" style="height:100px;display:block;margin:0px auto;padding:0px;"/>'
+                                '<img src="'+src+'" style="height:200px;display:block;margin:0px auto;padding:0px;"/>'
                                 +'<a href="#/species/details/'+id+'" style="display:block;margin:0px auto;padding:0px;">'
                                 + name_cn + ' ' + name_en + '</a>';
                             marker.addEventListener("click", function () {
