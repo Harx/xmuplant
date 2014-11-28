@@ -10,6 +10,9 @@ var app = angular.module('app', [
 app.config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
         $routeProvider
+            .when('/', {
+                redirectTo: '/map'
+            })
             .when('/home', {
                 templateUrl: 'partials/home.html',
                 controller: 'homeCtrl'
@@ -26,14 +29,13 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'partials/topicList.html',
                 controller: "topicListCtrl"
             })
-            //TODO not clear if /details will conflict with /:page ,wait practice
             .when('/topic/details/:id', {
                 templateUrl: "partials/topicDetails.html",
                 controller: 'topicDetailsCtrl'
             })
-            .when('/catalog/:page',{
-                templateUrl:"partials/catalog.html",
-                controller:'catalogCtrl'
+            .when('/catalog/:page', {
+                templateUrl: "partials/catalog.html",
+                controller: 'catalogCtrl'
             })
             .when('/knowledge/list/:catid/:page', {
                 templateUrl: 'partials/knowledgeList.html',
@@ -59,10 +61,9 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'partials/speciesDetails.html',
                 controller: 'speciesDetailsCtrl'
             })
-
-        .otherwise({
-            redirectTo: '/home'
-        });
+            .otherwise({
+                redirectTo: '/home'
+            });
 
         //    $locationProvider.html5Mode(true);
 
