@@ -1,83 +1,78 @@
 <div class="row wrapper">
-    <div class="page-header">
-        <h3>{{species.name_cn}}{{species.name_ot?"("+species.name_ot+")":""}}<small>{{species.name_en}}</small></h3>
-    </div>
-    <div class="col-xs-12 col-md-8">
-        <div class="list-group">
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">系统分类</h4>
-                <div class="list-group-item-text">
-                    <p>门：{{species.division}}</p>
-                    <p>科：{{species.family}}</p>
-                    <p>属：{{species.genus}}</p>
-                </div>
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">校园分布</h4>
-                <div class="list-group-item-text">
-                    <p>{{species.distribution}}</p>
-                    <p><i>经度：{{species.longitude}}</i>
-                    </p>
-                    <p><i>纬度：{{species.latitude}}</i>
-                    </p>
-                </div>
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">形态特征</h4>
-                <div class="list-group-item-text">
-                    <p>{{species.morphology}}</p>
-                </div>
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">产地</h4>
-                <div class="list-group-item-text">
-                    <p>{{species.origin}}</p>
-                </div>
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">习性</h4>
-                <div class="list-group-item-text">
-                    <p>{{species.habis}}</p>
-                </div>
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">栽培要点</h4>
-                <div class="list-group-item-text">
-                    <p>{{species.cultivation}}</p>
-                </div>
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">用途</h4>
-                <div class="list-group-item-text">
-                    <p>{{species.application}}</p>
-                </div>
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">文化历史</h4>
-                <div class="list-group-item-text">
-                    <p>{{species.history}}</p>
-                </div>
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">图片展示</h4>
-                <div class="list-group-item-text">
-                    <div ng-repeat="src in species.imgSrc">
-                        <a href="{{'http://xmuplant.qiniudn.com/' +src}}" target="_blank">
-                            <!--       <img ng-show="src" src="{{'http://xmuplant-upload.stor.sinaapp.com/' +src}}"> -->
-                            <img class="img-responsive img-rounded" ng-show="src" src="{{'http://xmuplant.qiniudn.com/' +src}}">
-                        </a>
-                        <p class="caption"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-4">
+    <header class="page-header">
+        <h3>
+            <span ng-bind="species.name_cn"></span>
+            <small>
+                <span ng-if="species.name_ot">
+                   （
+                    <span ng-bind="species.name_ot"></span>
+                    ）
+                </span>                
+                <i ng-bind="species.name_en"></i>
+            </small>
+        </h3>
+    </header>
+    <section class="col-xs-12 col-md-8 list-group">
+        <details open="open" class="list-group-item">
+            <summary class="list-group-item-heading">系统分类</summary>
+            <p>门：<span ng-bind="species.division"></span>
+            </p>
+            <p>科：<span ng-bind="species.family"></span>
+            </p>
+            <p>属：<span ng-bind="species.genus"></span>
+            </p>
+        </details>
+        <details open="open" class="list-group-item">
+            <summary class="list-group-item-heading">校园分布</summary>
+            <p><span ng-bind="species.distribution"></span>
+            </p>
+            <p><i>经度：<span ng-bind="species.longitude"></span></i>
+            </p>
+            <p><i>纬度：<span ng-bind="species.latitude"></span></i>
+            </p>
+        </details>
+        <details open="open" class="list-group-item">
+            <summary class="list-group-item-heading">形态特征</summary>
+            <p><span ng-bind="species.morphology"></span>
+            </p>
+        </details>
+        <details open="open" class="list-group-item">
+            <summary class="list-group-item-heading">产地</summary>
+            <p><span ng-bind="species.origin"></span>
+            </p>
+        </details>
+        <details open="open" class="list-group-item">
+            <summary class="list-group-item-heading">习性</summary>
+            <p><span ng-bind="species.habis"></span>
+            </p>
+        </details>
+        <details open="open" class="list-group-item">
+            <summary class="list-group-item-heading">栽培要点</summary>
+            <p><span ng-bind="species.cultivation"></span>
+            </p>
+        </details>
+        <details open="open" class="list-group-item">
+            <summary class="list-group-item-heading">用途</summary>
+            <p><span ng-bind="species.application"></span>
+            </p>
+        </details>
+        <details open="open" class="list-group-item">
+            <summary class="list-group-item-heading">文化历史</summary>
+            <p><span ng-bind="species.history"></span>
+            </p>
+        </details>
+        <details open="open" class="list-group-item">
+            <summary class="list-group-item-heading">图片展示</summary>
+            <figure ng-repeat="src in species.imgSrc">
+                <a href="{{'http://xmuplant.qiniudn.com/' +src}}" target="_blank">
+                    <figcaption class="caption" ng-bind="src"></figcaption>
+                    <!--       <img ng-show="src" src="{{'http://xmuplant-upload.stor.sinaapp.com/' +src}}"> -->
+                    <img class="img-responsive img-rounded" ng-show="src" src="{{'http://xmuplant.qiniudn.com/' +src}}" alt="{{src}}">
+                </a>
+            </figure>
+        </details>
+    </section>
+    <aside class="col-xs-12 col-md-4">
         <div class="" id="map" style="height:300px;"></div>
-
-        <!--        <div ng-repeat="src in species.imgSrc">-->
-        <!--       <img ng-show="src" src="{{'http://xmuplant-upload.stor.sinaapp.com/' +src}}"> -->
-        <!--            <img class="img-responsive" ng-show="src" src="{{'http://xmuplant.qiniudn.com/' +src}}">-->
-        <!--        </div>-->
-    </div>
+    </aside>
 </div>

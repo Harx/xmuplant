@@ -478,7 +478,7 @@ angular.module("app.controllers", [])
                     var map = new BMap.Map("map");
                     map.addControl(new BMap.MapTypeControl()); //添加地形控制器
                     map.enableScrollWheelZoom(); //设置鼠标滚轮缩放为启用
-                    map.centerAndZoom(new BMap.Point(118.105219, 24.443082), 16);
+                    map.centerAndZoom(new BMap.Point(118.105219, 24.443082), 15);
 
                     var longitudeArr = $scope.species.longitude.split(',');
                     var latitudeArr = $scope.species.latitude.split(',');
