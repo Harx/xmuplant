@@ -153,71 +153,112 @@ angular.module("app.controllers", [])
                     id: $routeParams.gId,
                     title: "genus"
                 },
+                curID:{
+                    d:null,
+                    f:null,
+                    g:null
+                },
                 info: "hi",
                 list: []
             };
 
-            // #/0/0/0
-            $http.get("db/system.php?table=division").success(function (data) {
-                $scope.system.arrDivision = data;
-                $scope.system.list = data;
-                $scope.system.info = "";
+            var setDivision = function () {
+                // #/0/0/0
+                $http.get("db/system.php?table=division").success(function (data) {
+                    $scope.system.arrDivision = data;
+                    $scope.system.list = data;
+                    $scope.system.info = "";
 
-                // #/1/0/0
-                if ($scope.system.division.id != 0) {
-                    $http.get("db/system.php?table=family&id=" + $scope.system.division.id).success(function (data) {
-                        var arr = $scope.system.arrDivision;
-                        var id = $scope.system.division.id;
-                        var i = 0,
-                            l = arr.length;
+                    // #/1/0/0
+                    if ($scope.system.division.id != 0) {
+                        setFamily();
+                    }
+                });
+            }
+            var setFamily = function () {
+                $http.get("db/system.php?table=family&id=" + $scope.system.division.id).success(function (data) {
+                    var arr = $scope.system.arrDivision;
+                    var id = $scope.system.division.id;
+                    var i = 0,
+                        l = arr.length;
+                    for (i; i < l; i++) {
+                        if (arr[i].id === id) {
+                            $scope.system.division.title = arr[i].name_cn + arr[i].name_en;
+                            $scope.system.info = arr[i].content;
+                        }
+                    }
+                    $scope.system.arrFamily = data;
+                    $scope.system.list = data;
+
+                    // #/1/1/0
+                    if ($scope.system.family.id != 0) {
+                        setGenus();
+                    }
+                });
+            }
+            var setGenus = function () {
+                $http.get("db/system.php?table=genus&id=" + $scope.system.family.id)
+                    .success(function (data) {
+                        var arr = $scope.system.arrFamily;
+                        var id = $scope.system.family.id;
+                        var i = 0;
+                        l = arr.length;
                         for (i; i < l; i++) {
-                            if (arr[i].id === id) {
-                                $scope.system.division.title = arr[i].name_cn + arr[i].name_en;
+                            if (arr[i].id == id) {
+                                $scope.system.family.title = arr[i].name_cn + arr[i].name_en;
                                 $scope.system.info = arr[i].content;
                             }
                         }
-                        $scope.system.arrFamily = data;
+                        $scope.system.arrGenus = data;
                         $scope.system.list = data;
 
-                        // #/1/1/0
-                        if ($scope.system.family.id != 0) {
-                            $http.get("db/system.php?table=genus&id=" + $scope.system.family.id).success(function (data) {
-                                var arr = $scope.system.arrFamily;
-                                var id = $scope.system.family.id;
-                                var i = 0;
-                                l = arr.length;
-                                for (i; i < l; i++) {
-                                    if (arr[i].id == id) {
-                                        $scope.system.family.title = arr[i].name_cn + arr[i].name_en;
-                                        $scope.system.info = arr[i].content;
-                                    }
-                                }
-                                $scope.system.arrGenus = data;
-                                $scope.system.list = data;
-
-                                // #/1/1/1
-                                if ($scope.system.genus.id != 0) {
-                                    $http.get("db/system.php?table=species&id=" + $scope.system.genus.id).success(function (data) {
-                                        var arr = $scope.system.arrGenus;
-                                        var id = $scope.system.genus.id;
-                                        var i = 0;
-                                        l = arr.length;
-                                        for (i; i < l; i++) {
-                                            if (arr[i].id == id) {
-                                                $scope.system.genus.title = arr[i].name_cn + arr[i].name_en;
-                                                $scope.system.info = arr[i].content;
-                                            }
-                                        }
-                                        $scope.system.arrSpecies = data;
-                                        $scope.system.list = data;
-                                    });
-                                }
-                            });
+                        // #/1/1/1
+                        if ($scope.system.genus.id != 0) {
+                            setSpecies();
                         }
                     });
-                }
+            }
+            var setSpecies = function () {
+                $http.get("db/system.php?table=species&id=" + $scope.system.genus.id)
+                    .success(function (data) {
+                        var arr = $scope.system.arrGenus;
+                        var id = $scope.system.genus.id;
+                        var i = 0;
+                        l = arr.length;
+                        for (i; i < l; i++) {
+                            if (arr[i].id == id) {
+                                $scope.system.genus.title = arr[i].name_cn + arr[i].name_en;
+                                $scope.system.info = arr[i].content;
+                            }
+                        }
+                        $scope.system.arrSpecies = data;
+                        $scope.system.list = data;
+                    });
+            }
+            
+//            if($scope.system.curID.d==null){
+//                console.log("d is null");
+//                $scope.system.curID.d=2;
+//            }
+            
+            setDivision();
+//            var curID=$scope.system.curID;
+//            var system=$scope.system;
+//            console.log("cur:"+$scope.system.curID.d+"&next:"+system.division.id);
+//            if(curID.d!=system.division.id){
+//                setDivision();
+//                $scope.system.curID.d=system.division.id;
+//                console.log("from divi-------------");
+//            }else if(curID.f!=system.family.id){
+//                setFamily();               
+//                curID.f=system.family.id;
+//                console.log("from fami-------------");
+//            }else if(curID.g!=system.genus.id){
+//                setGenus();
+//                curID.g=system.genus.id;
+//                console.log("from genu-------------");
+//            }
 
-            })
     }])
     .controller("topicListCtrl", ["$scope", "$http", "$routeParams",
         function ($scope, $http, $routeParams) {
