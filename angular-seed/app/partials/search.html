@@ -2,18 +2,18 @@
     <div class="col-md-2"></div>
     <div class="col-md-8 col-xs-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <header class="panel-heading">
                 <strong>检索结果</strong>
                 <span ng-if="search.keyword!='nothing'">共{{search.total}}条</span>
-            </div>
-            <div class="panel-body">
+            </header>
+            <section class="panel-body">
                 <p ng-if="search.keyword=='nothing'">请在搜索框中输入查询条件</p>
                 <p ng-if="search.keyword!='nothing'&&!search.result[0]">检索无结果，请尝试更改查询条件</p>
                 <p><span ng-if="search.keyword!='nothing'">检索关键词为：<mark>{{search.keyword}}</mark></p>
                 <p ng-repeat="species in search.result">
                     <a href="#/species/details/{{species.id}}">{{species.name_cn}} {{species.name_ot ? "("+species.name_ot+")" : ''}} {{species.name_en}}</a>
                 </p>                
-            </div>
+            </section>
         </div>
     </div>
 </div>

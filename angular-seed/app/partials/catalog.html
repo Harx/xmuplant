@@ -1,4 +1,4 @@
-<div id="catalog" class="wrapper row">
+<section id="catalog" class="wrapper row">
     <div class="col-md-12 col-md-12">
         <table class="table table-hover table-responsive">
             <thead>
@@ -21,14 +21,16 @@
                 </tr>
             </tbody>
         </table>
-        <ul class="pagination">
-            <li class="disabled active"><a href="#">&laquo;</a>
-            </li>
-            <li ng-repeat="page in pages">
-                <a href="#/catalog/{{page}}">{{page}}</a>
-            </li>
-            <li class="disabled"><a href="#">&raquo;</a>
-            </li>
-        </ul>
+        <footer>
+            <ul class="pagination">
+                <li class="disabled active"><a href="#">&laquo;</a>
+                </li>
+                <li ng-repeat="page in pages">
+                    <a href="#/catalog/{{page}}">{{page}}</a>
+                </li>
+                <li class="disabled"><a href="#">&raquo;</a>
+                </li>
+            </ul>
+        </footer>
     </div>
-</div>
+</section>

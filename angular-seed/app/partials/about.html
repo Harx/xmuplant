@@ -1,38 +1,37 @@
 <div id="about" class="row wrapper">
-    <div id="about-nav" class="left-nav col-xs-12 col-md-2">
+    <section id="about-nav" class="left-nav col-xs-12 col-md-2">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <header class="panel-heading">
                 <strong>栏目</strong> 
-            </div>
-            <div class="list-group">
+            </header>
+            <nav class="list-group">
                 <a class="list-group-item" ng-class="{active:about.id==1}" href="#/about/1">网站介绍</a>
                 <a class="list-group-item" ng-class="{active:about.id==2}" href="#/about/2">联系方式</a>
                 <a class="list-group-item" ng-class="{active:about.id==3}" href="#/about/3">版权声明</a>
                 <a class="list-group-item" ng-class="{active:about.id==4}" href="#/about/4">我要传图</a>
                 <a class="list-group-item" ng-class="{active:about.id==5}" href="#/about/5">更新日志</a>
-            </div>
+            </nav>
         </div>
-    </div>
-    <div id="about-content" class="col-xs-12 col-md-8">
+    </section>
+    <section id="about-content" class="col-xs-12 col-md-8">
         <!--        id 1-4  -->
-        <div class="panel panel-default" ng-if="about.id==1||about.id==2||about.id==3||about.id==4">
-            <div class="panel-heading">
-                <strong class="panel-title">{{about.title}}</strong>
-            </div>
-            <div class="asHtml panel-body" ng-bind-html="about.content | htmlTrust"></div>
-        </div>
+        <article class="panel panel-default" ng-if="about.id==1||about.id==2||about.id==3||about.id==4">
+            <header class="panel-heading">
+                <strong class="panel-title" ng-bind="about.title"></strong>
+            </header>
+            <section class="asHtml panel-body" ng-bind-html="about.content | htmlTrust"></section>
+        </article>
         <!--        updates blog -->
-        <div class="panel panel-default" ng-if="about.id==5">
-            <div class="panel-heading">
+        <article class="panel panel-default" ng-if="about.id==5">
+            <header class="panel-heading">
                 <strong class="panel-title">更新日志</strong>
-            </div>
+            </header>
             <div class="list-group">
-                <div class="list-group-item" ng-repeat="log in sblog">
-                    <strong>{{log.title}}</strong> 
+                <section class="list-group-item" ng-repeat="log in sblog">
+                    <strong ng-bind="log.title"></strong> 
                     <div class="asHtml" ng-bind-html="log.content | htmlTrust"></div>
-                </div>
+                </section>
             </div>
-        </div>
-
-    </div>
+        </article>
+    </section>
 </div>

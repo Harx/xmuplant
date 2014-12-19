@@ -1,5 +1,5 @@
 <div class="wrapper row">
-    <div class="col-md-12 col-xs-12">
+    <section class="col-md-12 col-xs-12">
         <table class="table table-hover table-responsive">
             <thead>
                 <tr>
@@ -10,23 +10,23 @@
             </thead>
             <tbody>
                 <tr ng-repeat="topic in topic.topics">
-                    <td style="min-width:50px;">{{topic.id}}</td>
+                    <td style="min-width:50px;" ng-bind="topic.id"></td>
                     <td style="min-width:100px;">
-                        <a href="#/topic/details/{{topic.id}}">{{topic.title}}</a>
+                        <a href="#/topic/details/{{topic.id}}" ng-bind="topic.title"></a>
                     </td>
-                    <td  >{{topic.d}}</td>
+                    <td>{{topic.d}}</td>
                 </tr>
             </tbody>
         </table>
-    </div>
 
-    <ul class="pagination">
-        <li class="disabled active"><a href="#">&laquo;</a>
-        </li>
-        <li ng-repeat="page in topic.pages">
-            <a href="#/topic/list/{{page}}">{{page}}</a>
-        </li>
-        <li class="disabled"><a href="#">&raquo;</a>
-        </li>
-    </ul>
+        <ul class="pagination">
+            <li class="disabled active"><a href="#">&laquo;</a>
+            </li>
+            <li ng-repeat="page in topic.pages">
+                <a href="#/topic/list/{{page}}" ng-bind="page"></a>
+            </li>
+            <li class="disabled"><a href="#">&raquo;</a>
+            </li>
+        </ul>
+    </section>
 </div>

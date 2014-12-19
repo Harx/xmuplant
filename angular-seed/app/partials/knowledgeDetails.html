@@ -1,22 +1,24 @@
-<div id="knowledgeDetails" class="row wrapper">
-    <div class="col-md-1">
-        <div class="">
-        </div>
-    </div>
+<article id="knowledgeDetails" class="row wrapper">
+    <div class="col-md-1"></div>
     <div class="col-xs-12 col-md-9">
         <div class="panel panel-default">
             <div class="panel-body">
-                <h2>
-                {{klgDetails.title}}
-                <small>/ {{klgDetails.category}} / {{klgDetails.date}}</small>
-                <button onclick="window.history.back()  " class="btn btn-info pull-right">返回目录</button>
-            </h2>
+                <header>
+                    <button onclick="window.history.back();" class="btn btn-info pull-right">返回目录</button>
+                    <h2>
+                    <span ng-bind="klgDetails.title"></span>
+                    <small>
+                        / 
+                        <span ng-bind="klgDetails.category"></span> 
+                        / 
+                        <span ng-bind="klgDetails.date"></span>
+                    </small>
+                    </h2>
+                </header>
                 <hr>
-                <div ng-bind-html="klgDetails.content | htmlTrust"></div>
+                <section ng-bind-html="klgDetails.content | htmlTrust"></section>
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-2">
-
-    </div>
-</div>
+    <div class="col-xs-12 col-md-2"></div>
+</article>

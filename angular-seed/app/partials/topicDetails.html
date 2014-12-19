@@ -1,27 +1,27 @@
-<div class="row wrapper">
-  <div class="col-md-2 col-xs-12">
+<section class="row wrapper">
+  <header class="col-md-2 col-xs-12">
       <h2>{{topicDetails.title}}</h2>
       <p>{{topicDetails.d}}</p>
-  </div>
+  </header>
 
-  <div class="col-md-10 col-xs-12">
-      <div class="col-md-3 col-xs-12" ng-repeat="species in topicDetails.s">
-
-          <a ng-if="species.id" class="thumbnail" href="#/species/details/{{species.id}}">
-<!--               <img src="{{'http://xmuplant-upload.stor.sinaapp.com/'+species.img_name}}"/> -->
-              <img  class="lazyload" data-src="{{species.img_name ? 'http://xmuplant.qiniudn.com/'+species.img_name : 'upload/default.jpg'}}"/>
-              <div class="caption text-center">
-                <span>{{species.name_cn}}</span>
-                <span>{{species.name_en}}</span>
-              </div>
-          </a>
-          <a ng-if="!species.id" class="thumbnail disabled">
-              <img  class="lazyload" data-src="upload/default.jpg"/>
-              <div class="caption">
-                <h4>{{species.name_cn}} （{{species.name_en}}）</h4>
-              </div>
-          </a>
-      </div>
-  </div>
-
-</div>
+  <section class="col-md-10 col-xs-12">
+      <ul>
+          <li class="col-md-3 col-xs-12" ng-repeat="species in topicDetails.s">
+              <a ng-if="species.id" class="thumbnail" href="#/species/details/{{species.id}}">
+          <!--               <img src="{{'http://xmuplant-upload.stor.sinaapp.com/'+species.img_name}}"/> -->
+                  <img  class="lazyload" data-src="{{species.img_name ? 'http://xmuplant.qiniudn.com/'+species.img_name : 'upload/default.jpg'}}" alt="{{species.img_name ?species.img_name:'暂无收录图片'}}" />
+                  <div class="caption text-center">
+                    <span>{{species.name_cn}}</span>
+                    <span>{{species.name_en}}</span>
+                  </div>
+              </a>
+              <a ng-if="!species.id" class="thumbnail disabled">
+                  <img  class="lazyload" data-src="upload/default.jpg" alt="暂无收录图片" />
+                  <div class="caption">
+                    <h4>{{species.name_cn}} （{{species.name_en}}）</h4>
+                  </div>
+              </a>
+          </li>
+      </ul>
+  </section>
+</section>

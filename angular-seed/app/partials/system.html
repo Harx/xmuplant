@@ -1,55 +1,65 @@
 <!--{{system.info+"hello"}}-->
-<div id="system" class="row wrapper">
-    <div id="system_tree" class="col-md-3 div xs-12 left-nav">
+<section id="system" class="row wrapper">
+    <nav id="system_tree" class="col-md-3 div xs-12 left-nav">
         <div class="panel panel-default">
-            <a class="panel-heading" href="#/system/0/0/0">
-                <strong>{{system.division.title}}</strong>
-            </a>
-            <a ng-if="system.family.title!='family'" class="panel-heading" href="#/system/{{system.division.id}}/0/0">
-                <strong>{{system.family.title}}</strong>
-            </a>
-            <a ng-if="system.genus.title!='genus'" class="panel-heading" href="#/system/{{system.division.id}}/{{system.family.id}}/0">
-                <strong>{{system.genus.title}}</strong>
-            </a>
-            <div class="list-group">
-                <a ng-if="system.genus.id==0" href="#system/{{system.division.id==0?item.id:system.division.id}}/{{((system.division.id!=0)&&(system.family.id==0))?item.id:system.family.id}}/{{system.family.id!=0?item.id:system.genus.id}}" class="list-group-item" ng-repeat="item in system.list">
-                    {{item.name_cn+item.name_en}}
-                </a>
-                <a ng-if="system.genus.id!=0" href="#/species/details/{{item.id}}" class="list-group-item" ng-repeat="item in system.list">
-                    {{item.name_cn+item.name_en}}
-                </a>
-            </div>
+            <ul>
+                <li ng-if="system.division.title!==''">
+                    <a class="panel-heading" href="#/system/0/0/0">
+                        <strong ng-bind="system.division.title"></strong>
+                    </a>
+                </li>
+                <li ng-if="system.family.title!='family'">
+                    <a class="panel-heading" href="#/system/{{system.division.id}}/0/0">
+                        <strong ng-bind="system.family.title"></strong>
+                    </a>
+                </li>
+                <li ng-if="system.genus.title!='genus'">
+                    <a class="panel-heading" href="#/system/{{system.division.id}}/{{system.family.id}}/0">
+                        <strong ng-bind="system.genus.title"></strong>
+                    </a>
+                </li>
+            </ul>
+            <ul class="list-group">
+                <li class="list-group-item" ng-if="system.genus.id==0" ng-repeat="item in system.list">
+                    <a href="#system/{{system.division.id==0?item.id:system.division.id}}/{{((system.division.id!=0)&&(system.family.id==0))?item.id:system.family.id}}/{{system.family.id!=0?item.id:system.genus.id}}" ng-bind="item.name_cn+item.name_en"></a>
+                </li>
+                <li class="list-group-item" ng-if="system.genus.id!=0" ng-repeat="item in system.list">
+                    <a href="#/species/details/{{item.id}}" ng-bind="item.name_cn+item.name_en"></a>
+                </li>
+            </ul>
         </div>
-    </div>
-    <div id="system_content" class="col-md-9 col-xs-12">
+    </nav>
+    <section id="system_content" class="col-md-9 col-xs-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <p>{{system.info}}</p>
-            </div>
-            <div class="panel-body">
+            <header class="panel-heading">
+                <p ng-bind="system.info"></p>
+            </header>
+            <section class="panel-body">
                 <div class="row">
                     <div class="col-md-3 col-xs-12" ng-repeat="item in system.list">
+                       
                         <a ng-if="system.genus.id==0" class="thumbnail" href="#system/{{system.division.id==0?item.id:system.division.id}}/{{((system.division.id!=0)&&(system.family.id==0))?item.id:system.family.id}}/{{system.family.id!=0?item.id:system.genus.id}}">
                             <!--                        <img  class="lazyload" data-src="{{system.'http://xmuplant-upload.stor.sinaapp.com/'+species.img_name}}"/> -->
-                            <img class="lazyload" data-src="{{item.img_name ? 'http://xmuplant.qiniudn.com/'+item.img_name : 'upload/default.jpg'}}" />
+                            <img class="lazyload" data-src="{{item.img_name ? 'http://xmuplant.qiniudn.com/'+item.img_name : 'upload/default.jpg'}}" alt="{{item.img_nam}}" />
                             <!--                            <img class="lazyload" data-src="upload/default.jpg" />-->
                             <div class="caption text-center">
-                                <span>{{item.name_cn}}</span>
-                                <span>{{item.name_en}}</span>
+                                <span ng-bind="item.name_cn"></span>
+                                <span ng-bind="item.name_en"></span>
                             </div>
                         </a>
+                        
                         <a ng-if="system.genus.id!=0" class="thumbnail" href="#/species/details/{{item.id}}">
                             <!--                        <img  class="lazyload" data-src="{{system.'http://xmuplant-upload.stor.sinaapp.com/'+species.img_name}}"/> -->
-                            <img class="lazyload" data-src="{{item.img_name ? 'http://xmuplant.qiniudn.com/'+item.img_name : 'upload/default.jpg'}}" />
+                            <img class="lazyload" data-src="{{item.img_name ? 'http://xmuplant.qiniudn.com/'+item.img_name : 'upload/default.jpg'}}" alt="{{item.img_nam}}" />
                             <!--                            <img class="lazyload" data-src="upload/default.jpg" />-->
                             <div class="caption text-center">
-                                <span>{{item.name_cn}}</span>
-                                <span>{{item.name_en}}</span>
+                                <span ng-bind="item.name_cn"></span>
+                                <span ng-bind="item.name_en"></span>
                             </div>
                         </a>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
-</div>
+    </section>
+</section>
