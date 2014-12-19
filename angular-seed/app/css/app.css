@@ -9,6 +9,11 @@ body{
   padding-top: 50px;
 /*	background-color:#C0DEED;*/
 }
+ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
 p {
     text-indent:2em;
 }
@@ -27,6 +32,12 @@ p {
 /*    重置panel样式*/
 .panel.panel-default > .panel-heading{
     background-color: white;
+}
+
+.thumbnail .caption{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;    
 }
 
 /*  左侧二级导航 ---------------------------------  */
@@ -115,7 +126,7 @@ p {
 #system .panel{
     min-height: 600px;
 }
-#system_tree a.panel-heading{
+#system_tree a.panel-heading {
 /*    border-left: 3px solid #ededed;*/
     font-size: 14px;
     display: block;
@@ -149,4 +160,10 @@ a.disabled:hover {
 /* 搜索页/search-----------------------------------------------------7------*/
 #search .panel-body {
     min-height: 300px;
+}
+#homePost {
+    overflow: hidden;
+}
+#homePost img{
+    margin: -6px 0 -3px -3px;
 }
