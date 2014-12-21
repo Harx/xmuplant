@@ -118,7 +118,12 @@ p {
     text-align: center;
     margin: 20px 0px;
 }
-
+#homePost {
+    overflow: hidden;
+}
+#homePost img{
+    margin: -6px 0 -3px -3px;
+}
 /* 系统分类/system----------------------------------------------3---------*/
 #system {
     font-size:12px;
@@ -161,9 +166,4 @@ a.disabled:hover {
 #search .panel-body {
     min-height: 300px;
 }
-#homePost {
-    overflow: hidden;
-}
-#homePost img{
-    margin: -6px 0 -3px -3px;
-}
+
