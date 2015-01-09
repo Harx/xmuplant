@@ -5,7 +5,7 @@ angular.module('app.controller',[])
 	.controller('map',function($scope){
 
 	})
-	.controller('category',function($scope)){
+	.controller('category',function($scope){
 
-	}
+	})
 ;
