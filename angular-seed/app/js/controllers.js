@@ -98,37 +98,48 @@ angular.module("app.controllers", [])
             $http.get("db/map.php").
             success(function (data) {
                 var species = data,
-                    map = new BMap.Map("map");
+                    map = new BMap.Map("map"),
+                    tempSpecies=species.slice(0),
+                    //添加地图标记
+                    process=function(specie){
+                        var longitudeArr = specie.longitude.split(','),
+                            latitudeArr = specie.latitude.split(','),
+                            img_name = specie.img_name.split(','),
+                            src = img_name[0] ? 'http://xmuplant.qiniudn.com/' + img_name[0] : 'upload/default.jpg',
+//                          src=img_name[0]?'http://xmuplant-upload.stor.sinaapp.com/'+img_name[0] : 'upload/default.jpg',
+                            name_cn = specie.name_cn,
+                            name_en = specie.name_en,
+                            id = specie.id;
+                        for (var j =longitudeArr.length-1; j >=0; j--) {
+                            var marker = new BMap.Marker(new BMap.Point(longitudeArr[j], latitudeArr[j]));
+                            map.addOverlay(marker);
+
+                            // 参考: 《javascrpt语言精粹》 p39页闭包。
+                            (function () {
+                                var mInfo =
+                                    '<img src="'+src+'" style="height:200px;display:block;margin:0px auto;padding:0px;"/>'
+                                    +'<a href="#/species/details/'+id+'" style="display:block;margin:0px auto;padding:0px;">'
+                                    + name_cn + ' ' + name_en + '</a>';
+                                marker.addEventListener("click", function () {
+                                    this.openInfoWindow(new BMap.InfoWindow(mInfo));
+                                });
+                            })();
+                        }
+                    },
+                    //数组分块技术
+                    chunk=function(array,handler){
+                        setTimeout(function(){
+                            var item=array.shift();
+                            handler(item);
+                            if(array.length>0){
+                                setTimeout(arguments.callee,10);
+                            }
+                        },0);
+                    };
                 map.addControl(new BMap.MapTypeControl()); //添加地形控制器
                 map.enableScrollWheelZoom(); //设置鼠标滚轮缩放为启用
                 map.centerAndZoom(new BMap.Point(118.105219, 24.443082), 17);
-                var i = 0;
-                for (i; i < species.length; i++) {
-                    var longitudeArr = species[i].longitude.split(',');
-                    var latitudeArr = species[i].latitude.split(',');
-                    var img_name=species[i].img_name.split(',');
-                    var src=img_name[0]?'http://xmuplant.qiniudn.com/'+img_name[0] : 'upload/default.jpg';
-//                    var src=img_name[0]?'http://xmuplant-upload.stor.sinaapp.com/'+img_name[0] : 'upload/default.jpg';
-                    var name_cn = species[i].name_cn;
-                    var name_en = species[i].name_en;
-                    var id = species[i].id;
-                    var j = 0;
-                    for (j; j < longitudeArr.length; j++) {
-                        var marker = new BMap.Marker(new BMap.Point(longitudeArr[j], latitudeArr[j]));
-                        map.addOverlay(marker);
-
-                        // 参考: 《javascrpt语言精粹》 p39页闭包。
-                        (function (mId) {
-                            var mInfo =
-                                '<img src="'+src+'" style="height:200px;display:block;margin:0px auto;padding:0px;"/>'
-                                +'<a href="#/species/details/'+id+'" style="display:block;margin:0px auto;padding:0px;">'
-                                + name_cn + ' ' + name_en + '</a>';
-                            marker.addEventListener("click", function () {
-                                this.openInfoWindow(new BMap.InfoWindow(mInfo));
-                            });
-                        })(id);
-                    }
-                }
+                chunk(species,process);
             }).
             error(function (data) {
 
