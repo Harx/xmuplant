@@ -99,7 +99,6 @@ angular.module("app.controllers", [])
             success(function (data) {
                 var species = data,
                     map = new BMap.Map("map"),
-                    tempSpecies=species.slice(0),
                     //添加地图标记
                     process=function(specie){
                         var longitudeArr = specie.longitude.split(','),
